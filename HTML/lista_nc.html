@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listado No Conformidades</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'lista_nc' %}">No Conformidades</a>
+        <a href="{% url 'lista_acciones' %}">Acciones Correctivas</a>
+        <a href="{% url 'lista_responsables' %}">Responsables</a>
+    </nav>
+
+    <div class="main-wrapper">
+        <h1>Registro de No Conformidades</h1>
+        <a href="{% url 'alta_nc' %}" class="btn-ficha">Nueva NC</a>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Estado</th>
+                    <th>Acción 1</th>
+                    <th>Acción 2</th>
+                    <th>Acción 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for n in ncs %}
+                <tr>
+                    <td>{{ n.codigo }}</td>
+                    <td>{{ n.estado }}</td>
+                    <td><a href="{% url 'detalle_nc' n.id %}" class="btn">Ver Ficha</a></td>
+                    <td><a href="{% url 'editar_nc' n.id %}" class="btn">Editar NC</a></td>
+                    <td><a href="{% url 'borrar_nc' n.id %}" class="btn">Borrar NC</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

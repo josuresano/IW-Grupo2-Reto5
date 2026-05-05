@@ -1,0 +1,147 @@
+:root {
+    --azul-deusto: #1a2a6c;
+    --azul-claro: #3498db;
+    --fondo-gris: #f0f2f5;
+    --blanco: #ffffff;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: var(--fondo-gris);
+}
+
+nav {
+    background-color: var(--azul-deusto);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--azul-claro);
+}
+
+.main-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    background-color: var(--blanco);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #eeeeee;
+}
+
+.resumen-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tarjeta-resumen {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.numero-destacado {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--azul-claro);
+}
+
+.btn-ficha {
+    color: var(--azul-claro);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+form table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+form th {
+    text-align: right;
+    padding-right: 20px;
+    width: 30%;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    color: #333;
+}
+
+form td {
+    border: none;
+    padding: 12px 0;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #0056b3;
+    outline: none;
+    background-color: #f9f9f9;
+}
+
+.btn-cancelar {
+    color: #666;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 15px;
+    font-size: 0.9em;
+}
+
+.btn-cancelar:hover {
+    color: #cc0000;
+}
+
+.btn-borrar-confirm {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-borrar-confirm:hover {
+    background-color: #c9302c;
+}

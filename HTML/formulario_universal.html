@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ titulo }}</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'lista_nc' %}">No Conformidades</a>
+        <a href="{% url 'lista_acciones' %}">Acciones Correctivas</a>
+        <a href="{% url 'lista_responsables' %}">Responsables</a>
+    </nav>
+
+    <div class="main-wrapper">
+        <h1>{{ titulo }}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <br>
+            <button type="submit" class="btn-ficha">Guardar Registro</button>
+            <a href="javascript:history.back()" class="btn-cancelar">Cancelar</a>
+        </form>
+    </div>
+
+</body>
+
+</html>

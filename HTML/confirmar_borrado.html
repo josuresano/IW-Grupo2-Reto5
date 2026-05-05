@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Confirmar Borrado</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'lista_nc' %}">No Conformidades</a>
+        <a href="{% url 'lista_acciones' %}">Acciones Correctivas</a>
+        <a href="{% url 'lista_responsables' %}">Responsables</a>
+    </nav>
+
+    <div class="main-wrapper">
+        <h1>¿Confirmas la eliminación?</h1>
+        <p>Estás a punto de borrar: <strong>{{ objeto }}</strong></p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-ficha">Eliminar Definitivamente</button>
+            <a href="{% url volver %}" class="btn-cancelar">Cancelar</a>
+        </form>
+    </div>
+
+</body>
+
+</html>

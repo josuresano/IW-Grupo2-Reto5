@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Detalle {{ nc.codigo }}</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <h1>Ficha: {{ nc.codigo }}</h1>
+        <p><strong>Descripción:</strong> {{ nc.descripcion }}</p>
+        <p><strong>Estado:</strong> {{ nc.estado }}</p>
+
+        <h3>Responsables Asignados:</h3>
+        <ul>
+            {% for r in nc.responsable.all %}
+            <li>{{ r.nombre }} {{ r.apellidos }}</li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="{% url 'lista_nc' %}" class="btn-ficha">Volver al listado</a>
+    </div>
+</body>
+
+</html>

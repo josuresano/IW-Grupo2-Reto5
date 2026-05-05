@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Deusto QA - Inicio</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'lista_nc' %}">No Conformidades</a>
+        <a href="{% url 'lista_acciones' %}">Acciones Correctivas</a>
+        <a href="{% url 'lista_responsables' %}">Responsables</a>
+    </nav>
+
+    <div class="main-wrapper">
+        <h1>Panel de Gestión de Calidad</h1>
+        <div class="resumen-container">
+            <div class="tarjeta-resumen">
+                <strong>NC Registradas</strong>
+                <div class="numero-destacado">{{ datos.total_nc }}</div>
+            </div>
+            <div class="tarjeta-resumen">
+                <strong>Acciones Correctivas</strong>
+                <div class="numero-destacado">{{ datos.total_ac }}</div>
+            </div>
+            <div class="tarjeta-resumen">
+                <strong>Responsables</strong>
+                <div class="numero-destacado">{{ datos.total_responsables }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
