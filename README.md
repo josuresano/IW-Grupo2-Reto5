@@ -1,3 +1,3 @@
 # IW-Grupo2-Reto5
 ### Enlace al repositorio GitHub: 
-https://github.com/josuresano/IW-Grupo2-Reto5# IW-Grupo2-Reto5
+https://github.com/josuresano/IW-Grupo2-Reto5
