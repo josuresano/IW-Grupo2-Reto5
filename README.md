@@ -6,21 +6,21 @@ https://github.com/josuresano/IW-Grupo2-Reto5
 
 ## Descripción del Proyecto  
   
-Sistema web de gestión de calidad industrial desarrollado con Django que permite el seguimiento y control de no conformidades y acciones correctivas en entornos industriales, siguiendo los estándares de calidad ISO 9001.  
+Este proyecto es un sistema web de gestión de calidad industrial desarrollado con Django que permite el seguimiento y control de no conformidades y acciones correctivas en entornos industriales, siguiendo los estándares de calidad ISO 9001.  
   
 ## Características Principales  
   
-### 🏭 Gestión de Calidad Integral  
+### Gestión de Calidad Integral  
 - **Registro de No Conformidades (NC)**: Documentación y seguimiento de desviaciones de calidad  
 - **Acciones Correctivas**: Gestión de planes de acción para eliminar causas raíz  
 - **Equipo de Responsables**: Directorio de personal asignado a la gestión de calidad  
   
-### 📊 Panel de Control  
+### Panel de Control  
 - **Dashboard Principal**: Métricas globales en tiempo real  
 - **KPIs Visuales**: Contadores de NC registradas, acciones correctivas y responsables  
 - **Navegación Intuitiva**: Acceso rápido a todas las funcionalidades  
   
-### 🔧 Funcionalidades Técnicas  
+### Funcionalidades Técnicas  
 - **CRUD Completo**: Crear, leer, actualizar y eliminar registros  
 - **Fichas Técnicas**: Vistas detalladas de cada no conformidad  
 - **Formularios Universales**: Templates reutilizables para todas las operaciones  
@@ -41,13 +41,13 @@ Sistema web de gestión de calidad industrial desarrollado con Django que permit
   
 ## Organización de Módulos
 
-├── Gestion_NC/ # Módulo principal de gestión
-│ ├── models.py # Modelos de datos
-│ ├── views.py # Lógica de negocio
-│ └── forms.py # Formularios Django
-├── templates/HTML/ # Plantillas de interfaz
-├── static/CSS/ # Hojas de estilo
-└── static/Python/ # Scripts de procesamiento
+-- Gestion_NC/ # Módulo principal de gestión
+   -- models.py # Modelos de datos
+   -- views.py # Lógica de negocio
+   -- forms.py # Formularios Django
+-- templates/HTML/ # Plantillas de interfaz
+-- static/CSS/ # Hojas de estilo
+-- static/Python/ # Scripts de procesamiento
 
 ## Flujo de Trabajo  
   
