@@ -145,3 +145,18 @@ textarea:focus {
 .btn-borrar-confirm:hover {
     background-color: #c9302c;
 }
+
+.btn-primary {
+    background-color: var(--azul-claro);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover {
+    background-color: var(--azul-deusto);
+    color: white;
+}
