@@ -2,67 +2,79 @@
 ### Enlace al repositorio GitHub: 
 https://github.com/josuresano/IW-Grupo2-Reto5
 
+---
 
----  
+## Descripción del Proyecto  
   
-# Control_Calidad_Industria — Visión General del Proyecto  
+Este proyecto es un sistema web de gestión de calidad industrial desarrollado con Django que permite el seguimiento y control de no conformidades y acciones correctivas en entornos industriales, siguiendo los estándares de calidad ISO 9001.  
   
-El proyecto **Control_Calidad_Industria** es un sistema web de gestión de calidad industrial diseñado para hacer seguimiento de **No Conformidades (NC)** y sus **Acciones Correctivas (AC)** asociadas. Construido con el framework Django, la aplicación facilita el seguimiento de calidad al estilo ISO, gestionando el ciclo de vida de los problemas de calidad: desde la identificación y evaluación de severidad hasta la asignación de responsables y el seguimiento de la resolución.  
+## Características Principales  
   
-## Propósito y Contexto del Dominio  
+### Gestión de Calidad Integral  
+- **Registro de No Conformidades (NC)**: Documentación y seguimiento de desviaciones de calidad  
+- **Acciones Correctivas**: Gestión de planes de acción para eliminar causas raíz  
+- **Equipo de Responsables**: Directorio de personal asignado a la gestión de calidad  
   
-El sistema actúa como repositorio centralizado de datos de calidad industrial. Permite a los responsables de calidad:  
+### Panel de Control  
+- **Dashboard Principal**: Métricas globales en tiempo real  
+- **KPIs Visuales**: Contadores de NC registradas, acciones correctivas y responsables  
+- **Navegación Intuitiva**: Acceso rápido a todas las funcionalidades  
   
-- Registrar y categorizar No Conformidades (NC) con metadatos específicos como origen, severidad y procesos afectados.  
-- Asignar múltiples **Responsables** a problemas de calidad concretos.  
-- Hacer seguimiento de la ejecución de Acciones Correctivas (AC) vinculadas a NCs específicas, incluyendo fechas de finalización planificadas y reales.  
-- Monitorizar KPIs globales de calidad a través de un panel de control centralizado.  
+### Funcionalidades Técnicas  
+- **CRUD Completo**: Crear, leer, actualizar y eliminar registros  
+- **Fichas Técnicas**: Vistas detalladas de cada no conformidad  
+- **Formularios Universales**: Templates reutilizables para todas las operaciones  
+- **Confirmaciones de Seguridad**: Diálogos de confirmación para eliminaciones  
   
-## Stack Tecnológico  
+## Arquitectura del Sistema  
   
-El proyecto utiliza un stack moderno basado en Python, con foco en la simplicidad y portabilidad para entornos industriales.  
+### Estructura MVT (Model-View-Template)  
+- **Models**: `NoConformidad`, `AccionCorrectiva`, `Responsable`  
+- **Views**: Lógica de negocio para gestión de calidad  
+- **Templates**: Interfaz de usuario en español  
   
-| Componente | Tecnología | Versión |  
-| :--- | :--- | :--- |  
-| **Framework** | Django | 6.0.4 |  
-| **Lenguaje** | Python | 3.x |  
-| **Base de datos** | SQLite3 | 3.x |  
-| **Utilidades** | sqlparse, tzdata, asgiref | Última (vía pip) |  
+### Tecnologías Utilizadas  
+- **Backend**: Django 6.0  
+- **Frontend**: HTML5, CSS con variables personalizadas  
+- **Base de Datos**: Configurable (SQLite por defecto)  
+- **Estilo**: Sistema de diseño corporativo "Deusto QA"  
   
----  
+## Organización de Módulos
+
+- Gestion_NC/ # Módulo principal de gestión
+   - models.py # Modelos de datos
+   - views.py # Lógica de negocio
+   - forms.py # Formularios Django
+- templates/HTML/ # Plantillas de interfaz
+- static/CSS/ # Hojas de estilo
+- static/Python/ # Scripts de procesamiento
+
+## Flujo de Trabajo  
   
-## Arquitectura de Alto Nivel  
+1. **Registro Inicial**: Captura de no conformidades  
+2. **Asignación**: Designación de responsables  
+3. **Acción Correctiva**: Implementación de soluciones  
+4. **Seguimiento**: Monitorización del estado  
+5. **Cierre**: Verificación y finalización  
   
-El proyecto sigue el patrón estándar de Django **Modelo-Vista-Plantilla (MVT)**. Está estructurado en un paquete de configuración principal (`Control_Calidad_Industria`) y un paquete de lógica de aplicación primario (`Gestion_NC`).  
+## Configuración del Idioma  
   
-### Diagrama de Componentes del Sistema  
+El sistema está configurado para operar en castellano:  
+- Interfaz de usuario completamente en español  
+- Terminología industrial estándar  
+- Configuración regional para formatos de fecha y números  
   
-Este diagrama relaciona los requisitos del sistema con las entidades de código definidas en el proyecto.  
+## Instalación y Uso  
   
-**Mapeo del Sistema de Gestión de Calidad**  
+1. Clonar el repositorio  
+2. Configurar entorno virtual  
+3. Instalar dependencias con `pip install -r requirements.txt`  
+4. Ejecutar migraciones: `python manage.py migrate`  
+5. Iniciar servidor: `python manage.py runserver`  
   
-```mermaid  
-graph TD  
-    subgraph "Dominio Industrial"  
-        A["Problema de Calidad (NC)"]  
-        B["Tarea de Resolución (AC)"]  
-        C["Responsable de Calidad"]  
-        D["Panel de KPIs"]  
-    end  
+## Acceso al Sistema  
   
-    subgraph "Entidades de Código (Proyecto Django)"  
-        A1["Clase [NoConformidad]"]  
-        B1["Clase [AccionCorrectiva]"]  
-        C1["Clase [Responsable]"]  
-        D1["Función [calcular_datos_globales]"]  
-        E1["[db.sqlite3]"]  
-    end  
-  
-    A --- A1  
-    B --- B1  
-    C --- C1  
-    D --- D1  
-  
-    A1 --> E1  
-    B1 --> E1  
-    C1 --> E1
+- **Inicio**: Panel principal con métricas globales  
+- **No Conformidades**: Listado y gestión de NCs  
+- **Acciones Correctivas**: Registro y seguimiento de ACs  
+- **Responsables**: Directorio del equipo de calidad  
