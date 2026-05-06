@@ -41,13 +41,13 @@ Este proyecto es un sistema web de gestión de calidad industrial desarrollado c
   
 ## Organización de Módulos
 
--- Gestion_NC/ # Módulo principal de gestión
-   -- models.py # Modelos de datos
-   -- views.py # Lógica de negocio
-   -- forms.py # Formularios Django
--- templates/HTML/ # Plantillas de interfaz
--- static/CSS/ # Hojas de estilo
--- static/Python/ # Scripts de procesamiento
+- Gestion_NC/ # Módulo principal de gestión
+   - models.py # Modelos de datos
+   - views.py # Lógica de negocio
+   - forms.py # Formularios Django
+- templates/HTML/ # Plantillas de interfaz
+- static/CSS/ # Hojas de estilo
+- static/Python/ # Scripts de procesamiento
 
 ## Flujo de Trabajo  
   
