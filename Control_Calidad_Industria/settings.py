@@ -16,7 +16,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-sys.path.append(str(BASE_DIR / "Python"))
+sys.path.append(str(BASE_DIR / "static" / "Python"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'Control_Calidad_Industria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "HTML"],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +119,5 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "CSS",
-    BASE_DIR / "JS",
+    BASE_DIR / "static",
 ]

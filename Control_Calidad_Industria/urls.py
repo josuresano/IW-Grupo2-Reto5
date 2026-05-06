@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Gestion_NC import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,3 +34,6 @@ urlpatterns = [
     path('acciones/editar/<int:id_ac>/', views.editar_accion, name='editar_accion'),
     path('acciones/borrar/<int:id_ac>/', views.borrar_accion, name='borrar_accion'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
