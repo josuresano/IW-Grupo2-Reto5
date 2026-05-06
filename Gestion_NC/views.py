@@ -8,23 +8,23 @@ def inicio(request):
     acs = AccionCorrectiva.objects.all()
     resps = Responsable.objects.all()
     resumen = procesador.calcular_datos_globales(ncs, acs, resps)
-    return render(request, 'inicio.html', {'datos': resumen})
+    return render(request, 'HTML/inicio.html', {'datos': resumen})
 
 def lista_nc(request):
     ncs = NoConformidad.objects.all()
-    return render(request, 'lista_nc.html', {'ncs': ncs})
+    return render(request, 'HTML/lista_nc.html', {'ncs': ncs})
 
 def lista_acciones(request):
     acciones = AccionCorrectiva.objects.all()
-    return render(request, 'lista_acciones.html', {'acciones': acciones})
+    return render(request, 'HTML/lista_acciones.html', {'acciones': acciones})
 
 def lista_responsables(request):
     resps = Responsable.objects.all()
-    return render(request, 'lista_responsables.html', {'resps': resps})
+    return render(request, 'HTML/lista_responsables.html', {'resps': resps})
 
 def detalle_nc(request, id_nc):
     nc = NoConformidad.objects.get(id=id_nc)
-    return render(request, 'detalle_nc.html', {'nc': nc})
+    return render(request, 'HTML/detalle_nc.html', {'nc': nc})
 
 # --- Gestión No Conformidades (CRUD) ---
 
@@ -36,7 +36,7 @@ def alta_nc(request):
             return redirect('lista_nc')
     else:
         form = NoConformidadForm()
-    return render(request, 'formulario_universal.html', {'form': form, 'titulo': 'Alta de No Conformidad'})
+    return render(request, 'HTML/formulario_universal.html', {'form': form, 'titulo': 'Alta de No Conformidad'})
 
 def editar_nc(request, id_nc):
     nc = get_object_or_404(NoConformidad, id=id_nc)
@@ -47,14 +47,14 @@ def editar_nc(request, id_nc):
             return redirect('lista_nc')
     else:
         form = NoConformidadForm(instance=nc)
-    return render(request, 'formulario_universal.html', {'form': form, 'titulo': 'Actualizar No Conformidad'})
+    return render(request, 'HTML/formulario_universal.html', {'form': form, 'titulo': 'Actualizar No Conformidad'})
 
 def borrar_nc(request, id_nc):
     nc = get_object_or_404(NoConformidad, id=id_nc)
     if request.method == "POST":
         nc.delete()
         return redirect('lista_nc')
-    return render(request, 'confirmar_borrado.html', {'objeto': nc, 'volver': 'lista_nc'})
+    return render(request, 'HTML/confirmar_borrado.html', {'objeto': nc, 'volver': 'lista_nc'})
 
 # --- Gestión Acciones Correctivas (CRUD) ---
 
@@ -66,7 +66,7 @@ def alta_accion(request):
             return redirect('lista_acciones')
     else:
         form = AccionCorrectivaForm()
-    return render(request, 'formulario_universal.html', {'form': form, 'titulo': 'Nueva Acción Correctiva'})
+    return render(request, 'HTML/formulario_universal.html', {'form': form, 'titulo': 'Nueva Acción Correctiva'})
 
 def editar_accion(request, id_ac):
     ac = get_object_or_404(AccionCorrectiva, id=id_ac)
@@ -77,14 +77,14 @@ def editar_accion(request, id_ac):
             return redirect('lista_acciones')
     else:
         form = AccionCorrectivaForm(instance=ac)
-    return render(request, 'formulario_universal.html', {'form': form, 'titulo': 'Actualizar Acción'})
+    return render(request, 'HTML/formulario_universal.html', {'form': form, 'titulo': 'Actualizar Acción'})
 
 def borrar_accion(request, id_ac):
     ac = get_object_or_404(AccionCorrectiva, id=id_ac)
     if request.method == "POST":
         ac.delete()
         return redirect('lista_acciones')
-    return render(request, 'confirmar_borrado.html', {'objeto': ac, 'volver': 'lista_acciones'})
+    return render(request, 'HTML/confirmar_borrado.html', {'objeto': ac, 'volver': 'lista_acciones'})
 
     
    
