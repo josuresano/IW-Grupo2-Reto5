@@ -35,7 +35,7 @@ Este proyecto es un sistema web de gestión de calidad industrial desarrollado c
   
 ### Tecnologías Utilizadas  
 - **Backend**: Django 6.0  
-- **Frontend**: HTML5, CSS3 con variables personalizadas  
+- **Frontend**: HTML5, CSS con variables personalizadas  
 - **Base de Datos**: Configurable (SQLite por defecto)  
 - **Estilo**: Sistema de diseño corporativo "Deusto QA"  
   
