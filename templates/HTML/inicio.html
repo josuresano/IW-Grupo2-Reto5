@@ -1,40 +1,66 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deusto QA - Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'CSS/estilos.css' %}">
 </head>
+<body class="inicio-bg">
 
-<body>
-    <nav>
-        <a href="{% url 'inicio' %}">Inicio</a>
+    <nav class="navbar">
+        <a href="{% url 'inicio' %}" class="active">Inicio</a>
         <a href="{% url 'lista_nc' %}">No Conformidades</a>
         <a href="{% url 'lista_acciones' %}">Acciones Correctivas</a>
         <a href="{% url 'lista_responsables' %}">Responsables</a>
     </nav>
 
     <div class="main-wrapper">
-        <h1>Panel de Gestión de Calidad</h1>
+        <header class="header-seccion">
+            <h1>Panel de Gestión de Calidad</h1>
+            <p>Resumen general del estado del sistema de control industrial.</p>
+        </header>
+
         <div class="resumen-container">
             <div class="tarjeta-resumen">
-                <strong>NC Registradas</strong>
-                <div class="numero-destacado">{{ datos.total_nc }}</div>
+                <div class="tarjeta-info">
+                    <div class="tarjeta-icono">📋</div>
+                    <div class="texto-stats">
+                        <strong>NC Registradas</strong>
+                        <div class="numero-destacado">{{ datos.total_nc }}</div>
+                        <span class="meta-dato">Registros totales</span>
+                    </div>
+                </div>
+                <img src="{% static 'CSS/IMG/nc.png' %}" alt="Gráfico NC" class="img-dashboard">
             </div>
+
             <div class="tarjeta-resumen">
-                <strong>Acciones Correctivas</strong>
-                <div class="numero-destacado">{{ datos.total_ac }}</div>
+                <div class="tarjeta-info">
+                    <div class="tarjeta-icono">✅</div>
+                    <div class="texto-stats">
+                        <strong>Acciones Correctivas</strong>
+                        <div class="numero-destacado">{{ datos.total_ac }}</div>
+                        <span class="meta-dato">En seguimiento</span>
+                    </div>
+                </div>
+                <img src="{% static 'CSS/IMG/acciones.png' %}" alt="Gráfico Acciones" class="img-dashboard">
             </div>
+
             <div class="tarjeta-resumen">
-                <strong>Responsables</strong>
-                <div class="numero-destacado">{{ datos.total_responsables }}</div>
+                <div class="tarjeta-info">
+                    <div class="tarjeta-icono">👤</div>
+                    <div class="texto-stats">
+                        <strong>Responsables</strong>
+                        <div class="numero-destacado">{{ datos.total_responsables }}</div>
+                        <span class="meta-dato">Usuarios activos</span>
+                    </div>
+                </div>
+                <img src="{% static 'CSS/IMG/responsables.png' %}" alt="Gráfico Responsables" class="img-dashboard">
             </div>
         </div>
-    </div>
 
     <script src="{% static 'JS/scripts.js' %}"></script>
-    
 </body>
-
 </html>
