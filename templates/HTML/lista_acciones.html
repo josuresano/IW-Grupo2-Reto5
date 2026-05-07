@@ -17,8 +17,8 @@
     </nav>
 
     <div class="main-wrapper">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1>Registro de Acciones Correctivas</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h1 style="margin: 0;">Registro de Acciones Correctivas</h1>
             <a href="{% url 'alta_accion' %}" class="btn-borrar-confirm" style="background-color: var(--azul-claro); text-decoration: none; padding: 8px 15px;">+ Nueva Acción</a>
         </div>
 
@@ -37,12 +37,25 @@
                 {% for a in acciones %}
                 <tr>
                     <td>{{ a.descripcion }}</td>
-                    <td><strong>{{ a.nc.codigo|default:"---" }}</strong></td>
-                    <td>{{ a.responsable.nombre|default:"Sin asignar" }}</td>
-                    <td>{{ a.fecha_limite|date:"d/m/Y" }}</td>
+                    
+                    <td style="text-align: center;">
+                        {% if a.nc %}
+                        <strong style="color: var(--azul-deusto); background: #e8efff; padding: 2px 6px; border-radius: 3px; border: 1px solid #bdd0fb;">
+                            {{ a.nc.codigo|default:a.nc }}
+                        </strong>
+                        {% else %}
+                        <span style="color: #ccc;">---</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ a.responsable.nombre|default:a.responsable|default:"Sin asignar" }}</td>
+
+                    <td>{{ a.fecha_limite|date:"d/m/Y"|default:a.fecha|date:"d/m/Y"|default:"---" }}</td>
+
                     <td>
                         <span style="color: var(--azul-deusto); font-weight: bold;">{{ a.estado }}</span>
                     </td>
+
                     <td style="text-align: center;">
                         <a href="{% url 'editar_accion' a.id %}" class="btn-ficha">Editar</a>
                     </td>
@@ -53,7 +66,9 @@
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="7" style="text-align: center; padding: 20px;">No hay acciones registradas</td>
+                    <td colspan="7" style="text-align: center; padding: 30px; color: #666;">
+                        No hay acciones registradas
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
