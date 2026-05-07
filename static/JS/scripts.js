@@ -60,4 +60,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
+    const estados = document.querySelectorAll(".estado");
+
+    estados.forEach(estado => {
+
+        const texto = estado.textContent.trim().toLowerCase();
+
+        if (texto.includes("finalizada")) {
+
+            estado.style.backgroundColor = "#d4edda";
+            estado.style.padding = "5px 10px";
+            estado.style.borderRadius = "5px";
+            estado.style.color = "#155724";
+
+        }
+
+        else if (texto.includes("pendiente")) {
+
+            estado.style.backgroundColor = "#fff3cd";
+            estado.style.padding = "5px 10px";
+            estado.style.borderRadius = "5px";
+            estado.style.color = "#856404";
+
+        }
+
+    });
+
+    const titulo = document.querySelector("h1");
+
+    if (titulo) {
+
+        const mensaje = document.createElement("p");
+
+        mensaje.textContent = "Sistema interactivo de gestión de calidad";
+
+        mensaje.style.color = "#3498db";
+        mensaje.style.fontWeight = "bold";
+
+        titulo.after(mensaje);
+
+    }
+
 });
