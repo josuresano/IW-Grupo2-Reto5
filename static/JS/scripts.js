@@ -43,4 +43,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    const tablasPagina = document.querySelectorAll("table");
+
+    tablasPagina.forEach(tabla => {
+
+        const filas = tabla.querySelectorAll("tbody tr");
+
+        const contador = document.createElement("p");
+
+        contador.textContent = "Registros visibles: " + filas.length;
+
+        contador.style.fontWeight = "bold";
+        contador.style.marginTop = "10px";
+
+        tabla.after(contador);
+
+    });
+
 });
