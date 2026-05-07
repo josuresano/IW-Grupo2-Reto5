@@ -1,74 +1,64 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deusto QA - Acciones Correctivas</title>
     <link rel="stylesheet" href="{% static 'CSS/estilos.css' %}">
 </head>
-
 <body>
 
-    <header>
-        <nav class="navbar">
-            <a href="{% url 'inicio' %}">Inicio</a>
-            <a href="{% url 'lista_nc' %}">No Conformidades</a>
-            <a href="{% url 'lista_acciones' %}" class="active">Acciones Correctivas</a>
-            <a href="{% url 'lista_responsables' %}">Responsables</a>
-        </nav>
-    </header>
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'lista_nc' %}">No Conformidades</a>
+        <a href="{% url 'lista_acciones' %}" class="active">Acciones Correctivas</a>
+        <a href="{% url 'lista_responsables' %}">Responsables</a>
+    </nav>
 
-    <main class="main-wrapper">
-        <section class="header-section">
+    <div class="main-wrapper">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
             <h1>Registro de Acciones Correctivas</h1>
-            <a href="{% url 'alta_accion' %}" class="btn-primary">+ Nueva Acción</a>
-        </section>
+            <a href="{% url 'alta_accion' %}" class="btn-borrar-confirm" style="background-color: var(--azul-claro); text-decoration: none; padding: 8px 15px;">+ Nueva Acción</a>
+        </div>
 
-        <section class="table-section">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Descripción</th>
-                        <th>Estado</th>
-                        <th colspan="2">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for a in acciones %}
-                    <tr>
-                        <td>{{ a.descripcion }}</td>
-                        <td>
-                            <span class="estado estado-{{ a.estado|lower }}">
-                                {{ a.estado }}
-                            </span>
-                        </td>
-                        <td>
-                            <a href="{% url 'editar_accion' a.id %}" class="btn-edit">
-                                Editar
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'borrar_accion' a.id %}" class="btn-delete"
-                               onclick="return confirm('¿Seguro que quieres eliminar esta acción?');">
-                                Eliminar
-                            </a>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4" class="empty">
-                            No hay acciones registradas
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-    </main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>NC Asociada</th>
+                    <th>Responsable</th>
+                    <th>Fecha Límite</th>
+                    <th>Estado</th>
+                    <th colspan="2" style="text-align: center;">Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in acciones %}
+                <tr>
+                    <td>{{ a.descripcion }}</td>
+                    <td><strong>{{ a.nc.codigo|default:"---" }}</strong></td>
+                    <td>{{ a.responsable.nombre|default:"Sin asignar" }}</td>
+                    <td>{{ a.fecha_limite|date:"d/m/Y" }}</td>
+                    <td>
+                        <span style="color: var(--azul-deusto); font-weight: bold;">{{ a.estado }}</span>
+                    </td>
+                    <td style="text-align: center;">
+                        <a href="{% url 'editar_accion' a.id %}" class="btn-ficha">Editar</a>
+                    </td>
+                    <td style="text-align: center;">
+                        <a href="{% url 'borrar_accion' a.id %}" class="btn-cancelar"
+                           onclick="return confirm('¿Eliminar esta acción?');">Borrar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 20px;">No hay acciones registradas</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <script src="{% static 'JS/scripts.js' %}"></script>
-    
 </body>
 </html>
