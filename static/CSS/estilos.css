@@ -171,3 +171,75 @@ input, select, textarea {
     border: 1px solid var(--borde-suave);
     border-radius: 4px;
 }
+
+/* --- SECCIÓN DOCUMENTACIÓN INICIO --- */
+.proyecto-info-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.columna-info h3 {
+    color: var(--azul-deusto);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.columna-info h4 {
+    color: var(--azul-claro);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.columna-info p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.lista-doc {
+    list-style: none;
+    padding: 0;
+}
+
+.lista-doc li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+}
+
+.lista-doc li::before {
+    content: "•";
+    color: var(--azul-claro);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.github-enlace {
+    margin-top: 25px;
+}
+
+.github-enlace a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--azul-deusto);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.github-enlace a:hover {
+    background-color: var(--azul-claro);
+}
+
+@media (max-width: 768px) {
+    .proyecto-info-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
