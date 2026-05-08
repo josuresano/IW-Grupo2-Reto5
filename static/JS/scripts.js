@@ -31,16 +31,49 @@ document.addEventListener("DOMContentLoaded", () => {
         buscador.style.marginBottom = "15px";
 
         tabla.before(buscador);
+        const limpiar = document.createElement("button");
+
+        limpiar.textContent = "Limpiar";
+        limpiar.style.marginLeft = "10px";
+
+        buscador.after(limpiar);
+
+        limpiar.addEventListener("click", () => {
+
+            buscador.value = "";
+
+            const filas = tabla.querySelectorAll("tbody tr");
+
+            filas.forEach(fila => {
+                fila.style.display = "";
+            });
+
+        contador.textContent = "Registros visibles: " + filas.length;
+
+    });
 
         buscador.addEventListener("keyup", () => {
             const texto = buscador.value.toLowerCase();
             const filas = tabla.querySelectorAll("tbody tr");
 
-            filas.forEach(fila => {
-                const contenido = fila.textContent.toLowerCase();
-                fila.style.display = contenido.includes(texto) ? "" : "none";
-            });
-        });
+    let visibles = 0;
+
+    filas.forEach(fila => {
+
+        const contenido = fila.textContent.toLowerCase();
+
+        if (contenido.includes(texto)) {
+            fila.style.display = "";
+            visibles++;
+        } else {
+            fila.style.display = "none";
+        }
+
+    });
+
+    contador.textContent = "Registros visibles: " + visibles;
+
+});
     });
 
     const tablasPagina = document.querySelectorAll("table");
