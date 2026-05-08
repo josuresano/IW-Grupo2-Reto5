@@ -22,76 +22,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    const tablas = document.querySelectorAll("table");
+const tablas = document.querySelectorAll("table");
 
-    tablas.forEach(tabla => {
-        const buscador = document.createElement("input");
-        buscador.type = "text";
-        buscador.placeholder = "Buscar...";
-        buscador.style.marginBottom = "15px";
+tablas.forEach(tabla => {
 
-        tabla.before(buscador);
-        const limpiar = document.createElement("button");
+    const filas = tabla.querySelectorAll("tbody tr");
 
-        limpiar.textContent = "Limpiar";
-        limpiar.style.marginLeft = "10px";
+    const buscador = document.createElement("input");
+    buscador.type = "text";
+    buscador.placeholder = "Buscar...";
+    buscador.style.marginBottom = "15px";
 
-        buscador.after(limpiar);
+    const limpiar = document.createElement("button");
+    limpiar.type = "button";
+    limpiar.textContent = "Limpiar";
+    limpiar.style.marginLeft = "10px";
 
-        limpiar.addEventListener("click", () => {
+    const contador = document.createElement("p");
+    contador.style.fontWeight = "bold";
+    contador.style.marginTop = "10px";
 
-            buscador.value = "";
+    tabla.before(buscador);
+    buscador.after(limpiar);
+    tabla.after(contador);
 
-            const filas = tabla.querySelectorAll("tbody tr");
+    function actualizarTabla() {
 
-            filas.forEach(fila => {
+        const texto = buscador.value.toLowerCase();
+        let visibles = 0;
+
+        filas.forEach(fila => {
+
+            const contenido = fila.textContent.toLowerCase();
+
+            if (contenido.includes(texto)) {
                 fila.style.display = "";
-            });
+                visibles++;
+            } else {
+                fila.style.display = "none";
+            }
 
-        contador.textContent = "Registros visibles: " + filas.length;
+        });
 
+        contador.textContent = "Registros visibles: " + visibles;
+    }
+
+    buscador.addEventListener("keyup", actualizarTabla);
+
+    limpiar.addEventListener("click", () => {
+        buscador.value = "";
+        actualizarTabla();
     });
 
-        buscador.addEventListener("keyup", () => {
-            const texto = buscador.value.toLowerCase();
-            const filas = tabla.querySelectorAll("tbody tr");
-
-    let visibles = 0;
-
-    filas.forEach(fila => {
-
-        const contenido = fila.textContent.toLowerCase();
-
-        if (contenido.includes(texto)) {
-            fila.style.display = "";
-            visibles++;
-        } else {
-            fila.style.display = "none";
-        }
-
-    });
-
-    contador.textContent = "Registros visibles: " + visibles;
+    actualizarTabla();
 
 });
-    });
-
-    const tablasPagina = document.querySelectorAll("table");
-
-    tablasPagina.forEach(tabla => {
-
-        const filas = tabla.querySelectorAll("tbody tr");
-
-        const contador = document.createElement("p");
-
-        contador.textContent = "Registros visibles: " + filas.length;
-
-        contador.style.fontWeight = "bold";
-        contador.style.marginTop = "10px";
-
-        tabla.after(contador);
-
-    });
 
     const estados = document.querySelectorAll(".estado");
 
