@@ -112,3 +112,16 @@ Para implementar estas funcionalidades se han utilizado conceptos básicos de Ja
 ### Objetivo de la parte JavaScript
 
 El objetivo principal de esta parte es mejorar la usabilidad de la aplicación, facilitando la búsqueda de información, la lectura de estados y el seguimiento visual de los registros de calidad.
+
+## Mejoras en el Registro de Acciones y CSS
+
+Se ha optimizado la interfaz de las acciones correctivas para garantizar la coherencia visual y la integridad de los datos en toda la plataforma.
+
+- Enriquecimiento de Datos: Incorporación de columnas para NC Asociada, Responsable y Fecha Prevista, conectando la tabla directamente con los campos del modelo.
+- Formateo Profesional: Aplicación de filtros de fecha (d/m/Y) y estilos de "badge" azul para los códigos, facilitando la lectura técnica.
+- Consistencia Visual: Unificación del diseño mediante variables CSS y el uso del contenedor main-wrapper para mantener márgenes y sombras uniformes.
+- Optimización de Tabla: Ajuste de alineaciones y anchos automáticos que evitan la deformación de la interfaz independientemente del contenido.
+
+## Objetivo de la parte de Acciones y CSS
+
+El objetivo principal es profesionalizar la gestión de datos, permitiendo un control visual rápido de las fechas límite y las vinculaciones entre problemas y soluciones en un entorno estético unificado.
