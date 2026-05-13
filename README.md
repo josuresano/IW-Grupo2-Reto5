@@ -125,3 +125,14 @@ Se ha optimizado la interfaz de las acciones correctivas para garantizar la cohe
 ## Objetivo de la parte de Acciones y CSS
 
 El objetivo principal es profesionalizar la gestión de datos, permitiendo un control visual rápido de las fechas límite y las vinculaciones entre problemas y soluciones en un entorno estético unificado.
+
+## Optimización de Tablas y Navegación
+Se han realizado ajustes técnicos en el CSS y en las plantillas HTML para mejorar la lectura de datos y la experiencia de usuario en las secciones críticas.
+
+## Mejoras en CSS (Navegación y Estilos)
+Persistencia Visual: Se ha optimizado el selector nav a.active para que la pestaña actual se mantenga resaltada en azul, proporcionando una ubicación clara al usuario.
+
+## Cambios en HTML (Acciones y Responsables)
+Lista No Conformidades: Se han integrado nuevas columnas para mostrar la NC Asociada, el Responsable y la Fecha Prevista de un vistazo, evitando clics innecesarios.
+
+Lista de Responsables: Reestructuración de la tabla para unificarla con el diseño general de la aplicación, aplicando las mismas cabeceras y márgenes que en el resto de módulos.

@@ -25,10 +25,12 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-nav a:hover, nav a.active {
-    color: var(--azul-claro);
+nav a:hover, 
+nav a.active {
+    color: var(--azul-claro) !important;
 }
 
 .main-wrapper {
@@ -172,7 +174,6 @@ input, select, textarea {
     border-radius: 4px;
 }
 
-/* --- SECCIÓN DOCUMENTACIÓN INICIO --- */
 .proyecto-info-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
