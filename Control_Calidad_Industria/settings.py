@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 import sys
-from pathlib import Path
+from pathlib import Path, PosixPath
+from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +24,13 @@ sys.path.append(str(BASE_DIR / "static" / "Python"))
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9+25#qevvabr8m6h72r2b0ihamo66uzslfzd$apg8%rzhaf)r9'
+# SECRET_KEY = 'django-insecure-9+25#qevvabr8m6h72r2b0ihamo66uzslfzd$apg8%rzhaf)r9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -76,10 +79,9 @@ WSGI_APPLICATION = 'Control_Calidad_Industria.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config (
+        default=config('DATABASE_URL')
+    )
 }
 
 
