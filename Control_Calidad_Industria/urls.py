@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/me/', views.MiPerfilAPIView.as_view(), name='api_me'),
     path('', views.inicio, name='inicio'),
     path('nc/', views.lista_nc, name='lista_nc'),
     path('acciones/', views.lista_acciones, name='lista_acciones'),

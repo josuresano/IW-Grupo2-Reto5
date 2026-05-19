@@ -1,3 +1,8 @@
+import logging
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from .serializers import NoConformidadSerializer, AccionCorrectivaSerializer, ResponsableSerializer
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import NoConformidad, AccionCorrectiva, Responsable
 from .forms import NoConformidadForm, AccionCorrectivaForm
@@ -85,6 +90,19 @@ def borrar_accion(request, id_ac):
         ac.delete()
         return redirect('lista_acciones')
     return render(request, 'HTML/confirmar_borrado.html', {'objeto': ac, 'volver': 'lista_acciones'})
+
+logger = logging.getLogger(__name__)
+
+class MiPerfilAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        logger.info(f"Perfil consultado por {request.user.username}")
+        return Response({
+            'id': request.user.id,
+            'username': request.user.username,
+            'email': request.user.email,
+        })
 
     
    
