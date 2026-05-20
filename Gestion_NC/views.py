@@ -104,5 +104,25 @@ class MiPerfilAPIView(APIView):
             'email': request.user.email,
         })
 
+class NoConformidadListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        ncs = NoConformidad.objects.all()
+        return Response(NoConformidadSerializer(ncs, many=True).data)
     
+class AccionCorrectivaListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        acciones = AccionCorrectiva.objects.all()
+        return Response(AccionCorrectivaSerializer(acciones, many=True).data)
+    
+class ResumenPublicoAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        return Response({
+            'total_responsables': Responsable.objects.count(),
+        })
    
