@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/nc/', views.NoConformidadListAPIView.as_view(), name='api_nc_list'),
     path('api/acciones/', views.AccionCorrectivaListAPIView.as_view(), name='api_acciones_list'),
     path('api/resumen/', views.ResumenPublicoAPIView.as_view(), name='api_resumen'),
+    path('login/', views.login_view, name='login'),
     path('', views.inicio, name='inicio'),
     path('nc/', views.lista_nc, name='lista_nc'),
     path('acciones/', views.lista_acciones, name='lista_acciones'),

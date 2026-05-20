@@ -8,6 +8,12 @@ from .models import NoConformidad, AccionCorrectiva, Responsable
 from .forms import NoConformidadForm, AccionCorrectivaForm
 import procesador
 
+logger = logging.getLogger(__name__)
+
+def login_view(request):
+    return render(request, 'HTML/login.html')
+
+
 def inicio(request):
     ncs = NoConformidad.objects.all()
     acs = AccionCorrectiva.objects.all()
@@ -90,8 +96,6 @@ def borrar_accion(request, id_ac):
         ac.delete()
         return redirect('lista_acciones')
     return render(request, 'HTML/confirmar_borrado.html', {'objeto': ac, 'volver': 'lista_acciones'})
-
-logger = logging.getLogger(__name__)
 
 class MiPerfilAPIView(APIView):
     permission_classes = [IsAuthenticated]
