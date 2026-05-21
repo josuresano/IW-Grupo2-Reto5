@@ -1,7 +1,13 @@
+import logging
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from .serializers import NoConformidadSerializer, AccionCorrectivaSerializer, ResponsableSerializer
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from .models import NoConformidad, AccionCorrectiva, Responsable
 from .forms import NoConformidadForm, AccionCorrectivaForm
+import procesador
 
 def inicio(request):
     ncs = NoConformidad.objects.all()

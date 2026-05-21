@@ -16,12 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Gestion_NC import views
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from Gestion_NC import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/me/', views.MiPerfilAPIView.as_view(), name='api_me'),
+    path('api/nc/', views.NoConformidadListAPIView.as_view(), name='api_nc_list'),
+    path('api/acciones/', views.AccionCorrectivaListAPIView.as_view(), name='api_acciones_list'),
+    path('api/resumen/', views.ResumenPublicoAPIView.as_view(), name='api_resumen'),
+    path('login/', views.login_view, name='login'),
     path('', views.inicio, name='inicio'),
     path('nc/', views.lista_nc, name='lista_nc'),
     path('acciones/', views.lista_acciones, name='lista_acciones'),
