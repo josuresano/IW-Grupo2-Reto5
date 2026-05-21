@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (buscador) {
 
-        buscador.addEventListener('input', function() {
+        buscador.addEventListener('input', function () {
             const filtro = buscador.value.toLowerCase();
             let visibles = 0;
-            
+
             filasTabla.forEach(fila => {
-                
+
                 if (fila.cells.length > 1 || !fila.textContent.includes("No se encontraron")) {
                     const textoFila = fila.textContent.toLowerCase();
                     if (textoFila.includes(filtro)) {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             });
-            
+
             const contadorElem = document.getElementById('contador-registros');
             if (contadorElem) {
                 contadorElem.textContent = "Registros visibles: " + visibles;
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const camposCodigo = document.querySelectorAll('input[name*="codigo"], #id_codigo');
     camposCodigo.forEach(campo => {
-        campo.addEventListener('input', function() {
+        campo.addEventListener('input', function () {
             this.value = this.value.toUpperCase();
         });
     });
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const infoAyuda = document.getElementById('info-ayuda');
 
     if (btnAyuda && infoAyuda) {
-        btnAyuda.addEventListener('click', function(e) {
+        btnAyuda.addEventListener('click', function (e) {
             e.preventDefault();
             if (infoAyuda.style.display === 'none' || infoAyuda.style.display === '') {
                 infoAyuda.style.display = 'block';
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (contenedorTips) {
         const tips = ["Revisar fechas", "Códigos en mayúsculas", "Asignar responsable"];
         let htmlStr = "<ul style='color: #3498db; font-weight: bold;'>";
-        tips.forEach(function(tip) {
+        tips.forEach(function (tip) {
             htmlStr += "<li>" + tip + "</li>";
         });
         htmlStr += "</ul>";
@@ -88,3 +88,53 @@ document.addEventListener("DOMContentLoaded", () => {
         titulo.after(mensaje);
     }
 });
+
+if (localStorage.getItem('access_token')) {
+    window.location.href = '/';
+}
+
+function validarCampos(username, password) {
+    let ok = true;
+    document.getElementById('error-username').textContent = '';
+    document.getElementById('error-password').textContent = '';
+    if (!username.trim() || username.trim().length < 3) {
+        document.getElementById('error-username').textContent = 'Usuario demasiado corto (mínimo 3 caracteres).';
+        ok = false;
+    }
+    if (!password || password.length < 6) {
+        document.getElementById('error-password').textContent = 'Contraseña demasiado corta (mínimo 6 caracteres).';
+        ok = false;
+    }
+    return ok;
+}
+
+async function handleLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const msgError = document.getElementById('msg-error');
+    msgError.style.display = 'none';
+
+    if (!validarCampos(username, password)) return;
+    document.getElementById('btn-login').disabled = true;
+    try {
+        const res = await fetch('/api/token/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+            localStorage.setItem('access_token', data.access);
+            localStorage.setItem('refresh_token', data.refresh);
+            window.location.href = '/';
+        } else {
+            msgError.textContent = 'Credenciales incorrectas. Inténtalo de nuevo.';
+            msgError.style.display = 'block';
+        }
+    } catch (e) {
+        msgError.textContent = 'Error de conexión con el servidor.';
+        msgError.style.display = 'block';
+    } finally {
+        document.getElementById('btn-login').disabled = false;
+    }
+}
