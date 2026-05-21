@@ -138,3 +138,45 @@ async function handleLogin() {
         document.getElementById('btn-login').disabled = false;
     }
 }
+
+
+function cerrarSesion() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    window.location.href = '/login/';
+}
+
+async function fetchConToken(url, opciones = {}) {
+
+    const token = localStorage.getItem('access_token');
+
+    opciones.headers = {
+        ...opciones.headers,
+        'Authorization': 'Bearer ${token}',
+        'Content-Type': 'application/json',
+    };
+
+    let res = await fetch(url, opciones);
+
+    if (res.status === 401) {
+        const refreshToken = localStorage.getItem('refresh_token');
+        if (!refreshToken) { cerrarSesion(); return; }
+
+        const refreshRes = await fetch('/api/token/refresh/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ refresh: refreshToken })
+        });
+
+        if (refreshRes.ok) {
+            const refreshData = await refreshRes.json();
+            localStorage.setItem('access_token', refreshData.access);
+            opciones.headers['Authorization'] = 'Bearer ${refreshData.access}';
+            res = await fetch(url, opciones);
+        } else {
+            cerrarSesion();
+            return;
+        }
+    }
+    return res;
+}
