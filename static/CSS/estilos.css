@@ -248,6 +248,11 @@ input, select, textarea {
     background-color: var(--azul-claro);
 }
 
+#msg-error {
+    color: red;
+    display: none;
+}
+
 @media (max-width: 768px) {
     .proyecto-info-wrapper {
         grid-template-columns: 1fr;

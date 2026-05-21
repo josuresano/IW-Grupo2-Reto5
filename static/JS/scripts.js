@@ -22,61 +22,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-const tablas = document.querySelectorAll("table");
+    const tablas = document.querySelectorAll("table");
 
-tablas.forEach(tabla => {
+    tablas.forEach(tabla => {
 
-    const filas = tabla.querySelectorAll("tbody tr");
+        const filas = tabla.querySelectorAll("tbody tr");
 
-    const buscador = document.createElement("input");
-    buscador.type = "text";
-    buscador.placeholder = "Buscar...";
-    buscador.style.marginBottom = "15px";
+        const buscador = document.createElement("input");
+        buscador.type = "text";
+        buscador.placeholder = "Buscar...";
+        buscador.style.marginBottom = "15px";
 
-    const limpiar = document.createElement("button");
-    limpiar.type = "button";
-    limpiar.textContent = "Limpiar";
-    limpiar.style.marginLeft = "10px";
+        const limpiar = document.createElement("button");
+        limpiar.type = "button";
+        limpiar.textContent = "Limpiar";
+        limpiar.style.marginLeft = "10px";
 
-    const contador = document.createElement("p");
-    contador.style.fontWeight = "bold";
-    contador.style.marginTop = "10px";
+        const contador = document.createElement("p");
+        contador.style.fontWeight = "bold";
+        contador.style.marginTop = "10px";
 
-    tabla.before(buscador);
-    buscador.after(limpiar);
-    tabla.after(contador);
+        tabla.before(buscador);
+        buscador.after(limpiar);
+        tabla.after(contador);
 
-    function actualizarTabla() {
+        function actualizarTabla() {
 
-        const texto = buscador.value.toLowerCase();
-        let visibles = 0;
+            const texto = buscador.value.toLowerCase();
+            let visibles = 0;
 
-        filas.forEach(fila => {
+            filas.forEach(fila => {
 
-            const contenido = fila.textContent.toLowerCase();
+                const contenido = fila.textContent.toLowerCase();
 
-            if (contenido.includes(texto)) {
-                fila.style.display = "";
-                visibles++;
-            } else {
-                fila.style.display = "none";
-            }
+                if (contenido.includes(texto)) {
+                    fila.style.display = "";
+                    visibles++;
+                } else {
+                    fila.style.display = "none";
+                }
 
+            });
+
+            contador.textContent = "Registros visibles: " + visibles;
+        }
+
+        buscador.addEventListener("keyup", actualizarTabla);
+
+        limpiar.addEventListener("click", () => {
+            buscador.value = "";
+            actualizarTabla();
         });
 
-        contador.textContent = "Registros visibles: " + visibles;
-    }
-
-    buscador.addEventListener("keyup", actualizarTabla);
-
-    limpiar.addEventListener("click", () => {
-        buscador.value = "";
         actualizarTabla();
+
     });
-
-    actualizarTabla();
-
-});
 
     const estados = document.querySelectorAll(".estado");
 
@@ -120,3 +120,29 @@ tablas.forEach(tabla => {
     }
 
 });
+
+if (localStorage.getItem('access_token')) {
+    window.location.href = '/';
+}
+
+function validarCampos(username, password) {
+    let ok = true;
+    document.getElementById('error-username').textContent = '';
+    document.getElementById('error-password').textContent = '';
+    if (!username.trim() || username.trim().length < 3) {
+        document.getElementById('error-username').textContent = 'Usuario demasiado corto (mínimo 3 caracteres).';
+        ok = false;
+    }
+    if (!password || password.length < 6) {
+        document.getElementById('error-password').textContent = 'Contraseña demasiado corta (mínimo 6 caracteres).';
+        ok = false;
+    }
+    return ok;
+}
+
+async function handleLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const msgError = document.getElementById('msg-error');
+}
+
