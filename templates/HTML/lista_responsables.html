@@ -1,13 +1,30 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deusto QA - Responsables</title>
     <link rel="stylesheet" href="{% static 'CSS/estilos.css' %}">
-</head>
 
+    <style>
+    body { background-color: #f0f2f5 !important; }
+    .main-wrapper {
+        max-width: 1100px !important;
+        margin: 40px auto !important;
+        background-color: white !important;
+        padding: 30px !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+        display: block !important;
+    }
+    table { width: 100% !important; border-collapse: collapse !important; margin-top: 20px !important; }
+    th, td { border: 1px solid #ccc !important; padding: 12px !important; text-align: left !important; }
+    th { background-color: #eeeeee !important; color: #1a2a6c !important; }
+</style>
+</head>
 <body>
+
     <nav>
         <a href="{% url 'inicio' %}">Inicio</a>
         <a href="{% url 'lista_nc' %}">No Conformidades</a>
@@ -16,7 +33,14 @@
     </nav>
 
     <div class="main-wrapper">
-        <h1>Equipo de Responsables</h1>
+        <h1 style="margin-bottom: 20px;">Equipo de Responsables</h1>
+        
+        <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
+            <form method="GET" action="{% url 'lista_responsables' %}" style="width: 300px; margin: 0;">
+                <input type="text" id="buscar" name="q" value="{{ query }}" placeholder="Buscar responsable (ej: 'a' o email)..." 
+                       style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </form>
+        </div>
 
         <table>
             <thead>
@@ -31,6 +55,12 @@
                     <td>{{ r.nombre }} {{ r.apellidos }}</td>
                     <td>{{ r.email }}</td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2" style="text-align: center; padding: 30px; color: #666;">
+                        No se encontraron responsables con esos criterios.
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -39,5 +69,4 @@
     <script src="{% static 'JS/scripts.js' %}"></script>
 
 </body>
-
 </html>
