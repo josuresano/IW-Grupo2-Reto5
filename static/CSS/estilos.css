@@ -28,14 +28,9 @@ nav a {
     transition: color 0.3s ease;
 }
 
-<<<<<<< HEAD
-nav a:hover, nav a.active {
-    color: var(--azul-claro);
-=======
 nav a:hover, 
 nav a.active {
     color: var(--azul-claro) !important;
->>>>>>> 828bdb3d5815a66aff7fdbe222ad6acb1b56e4e5
 }
 
 .main-wrapper {
@@ -179,10 +174,7 @@ input, select, textarea {
     border-radius: 4px;
 }
 
-<<<<<<< HEAD
 /* --- SECCIÓN DOCUMENTACIÓN INICIO --- */
-=======
->>>>>>> 828bdb3d5815a66aff7fdbe222ad6acb1b56e4e5
 .proyecto-info-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -257,8 +249,4 @@ input, select, textarea {
     .proyecto-info-wrapper {
         grid-template-columns: 1fr;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 828bdb3d5815a66aff7fdbe222ad6acb1b56e4e5

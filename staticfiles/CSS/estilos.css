@@ -1,0 +1,247 @@
+:root {
+    --azul-deusto: #1a2a6c;
+    --azul-claro: #3498db;
+    --fondo-gris: #f0f2f5;
+    --blanco: #ffffff;
+    --borde-suave: #ccc;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: var(--fondo-gris);
+    color: #333;
+}
+
+nav {
+    background-color: var(--azul-deusto);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover, 
+nav a.active {
+    color: var(--azul-claro) !important;
+}
+
+.main-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    background-color: var(--blanco);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid var(--borde-suave);
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #eeeeee;
+    color: var(--azul-deusto);
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+table td strong {
+    color: var(--azul-deusto);
+    background-color: #e8efff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #bdd0fb;
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+table td:nth-child(2), 
+table td:nth-child(4), 
+table td:nth-child(5) {
+    text-align: center;
+    white-space: nowrap;
+}
+
+table td:first-child, table td:nth-child(2) {
+    white-space: normal;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--azul-deusto);
+    margin-top: 0;
+}
+
+.resumen-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.tarjeta-resumen {
+    background-color: var(--blanco);
+    padding: 25px;
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 420px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-resumen:hover {
+    transform: translateY(-5px);
+}
+
+.numero-destacado {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: var(--azul-claro);
+}
+
+.img-dashboard {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background-color: #f8fafc;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.btn-ficha {
+    color: var(--azul-claro);
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.btn-cancelar {
+    color: #666;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-cancelar:hover {
+    color: #cc0000;
+}
+
+.btn-borrar-confirm {
+    background-color: var(--azul-claro);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+form th {
+    text-align: right;
+    padding-right: 20px;
+    border: none;
+    background: transparent;
+}
+
+form td { border: none; }
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--borde-suave);
+    border-radius: 4px;
+}
+
+/* --- SECCIÓN DOCUMENTACIÓN INICIO --- */
+.proyecto-info-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.columna-info h3 {
+    color: var(--azul-deusto);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.columna-info h4 {
+    color: var(--azul-claro);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.columna-info p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.lista-doc {
+    list-style: none;
+    padding: 0;
+}
+
+.lista-doc li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    color: #555;
+}
+
+.lista-doc li::before {
+    content: "•";
+    color: var(--azul-claro);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.github-enlace {
+    margin-top: 25px;
+}
+
+.github-enlace a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--azul-deusto);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.github-enlace a:hover {
+    background-color: var(--azul-claro);
+}
+
+@media (max-width: 768px) {
+    .proyecto-info-wrapper {
+        grid-template-columns: 1fr;
+    }
+}

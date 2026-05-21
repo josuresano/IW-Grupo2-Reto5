@@ -6,6 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deusto QA - Acciones Correctivas</title>
     <link rel="stylesheet" href="{% static 'CSS/estilos.css' %}">
+
+    <style>
+    body { background-color: #f0f2f5 !important; }
+    .main-wrapper {
+        max-width: 1250px !important;
+        margin: 40px auto !important;
+        background-color: white !important;
+        padding: 30px !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+        display: block !important;
+    }
+    table { width: 100% !important; border-collapse: collapse !important; margin-top: 20px !important; }
+    th, td { border: 1px solid #e0e0e0 !important; padding: 12px !important; text-align: left !important; }
+    th { background-color: #f8f9fa !important; color: #1a2a6c !important; font-weight: bold !important; }
+    .btn { display: inline-block !important; padding: 8px 14px !important; border-radius: 4px !important; text-decoration: none !important; }
+    .btn-primary { background-color: #007bff !important; color: white !important; margin-bottom: 15px !important; }
+    .badge-nc { background-color: #e8f0fe !important; color: #1a73e8 !important; padding: 4px 8px !important; border-radius: 4px !important; font-weight: bold !important; }
+</style>
+
 </head>
 <body>
 
@@ -17,9 +37,15 @@
     </nav>
 
     <div class="main-wrapper">
+        <h1 style="margin-bottom: 20px;">Registro de Acciones Correctivas</h1>
+        
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h1 style="margin: 0;">Registro de Acciones Correctivas</h1>
             <a href="{% url 'alta_accion' %}" class="btn-borrar-confirm" style="background-color: var(--azul-claro); text-decoration: none; padding: 8px 15px;">+ Nueva Acción</a>
+            
+            <form method="GET" action="{% url 'lista_acciones' %}" style="width: 300px; margin: 0;">
+                <input type="text" id="buscar" name="q" value="{{ query }}" placeholder="Buscar acción (ej: 001 o 'a')..." 
+                       style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </form>
         </div>
 
         <table>
