@@ -89,20 +89,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-if (localStorage.getItem('access_token')) {
-    window.location.href = '/';
+if (window.location.pathname === '/' && localStorage.getItem('access_token')) {
+    window.location.href = '/inicio/';
 }
 
 function validarCampos(username, password) {
     let ok = true;
     document.getElementById('error-username').textContent = '';
     document.getElementById('error-password').textContent = '';
-    if (!username.trim() || username.trim().length < 3) {
-        document.getElementById('error-username').textContent = 'Usuario demasiado corto (mínimo 3 caracteres).';
+    if (!username.trim() || username.trim().length < 4) {
+        document.getElementById('error-username').textContent = 'Usuario demasiado corto (mínimo 4 caracteres).';
         ok = false;
     }
-    if (!password || password.length < 6) {
-        document.getElementById('error-password').textContent = 'Contraseña demasiado corta (mínimo 6 caracteres).';
+    if (!password || password.length < 4) {
+        document.getElementById('error-password').textContent = 'Contraseña demasiado corta (mínimo 4 caracteres).';
         ok = false;
     }
     return ok;
@@ -126,7 +126,7 @@ async function handleLogin() {
         if (res.ok) {
             localStorage.setItem('access_token', data.access);
             localStorage.setItem('refresh_token', data.refresh);
-            window.location.href = '/';
+            window.location.href = '/inicio/';
         } else {
             msgError.textContent = 'Credenciales incorrectas. Inténtalo de nuevo.';
             msgError.style.display = 'block';
@@ -152,7 +152,7 @@ async function fetchConToken(url, opciones = {}) {
 
     opciones.headers = {
         ...opciones.headers,
-        'Authorization': 'Bearer ${token}',
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
     };
 
@@ -171,7 +171,7 @@ async function fetchConToken(url, opciones = {}) {
         if (refreshRes.ok) {
             const refreshData = await refreshRes.json();
             localStorage.setItem('access_token', refreshData.access);
-            opciones.headers['Authorization'] = 'Bearer ${refreshData.access}';
+            opciones.headers['Authorization'] = `Bearer ${refreshData.access}`;
             res = await fetch(url, opciones);
         } else {
             cerrarSesion();
