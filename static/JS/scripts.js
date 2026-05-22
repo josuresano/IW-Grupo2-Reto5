@@ -89,8 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-if (window.location.pathname === '/' && localStorage.getItem('access_token')) {
-    window.location.href = '/inicio/';
+if (window.location.pathname === '/') {
+    if (localStorage.getItem('access_token')) {
+        window.location.href = '/inicio/';
+    }
 }
 
 function validarCampos(username, password) {
