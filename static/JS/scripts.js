@@ -182,3 +182,20 @@ async function fetchConToken(url, opciones = {}) {
     }
     return res;
 }
+
+async function cargarUsuario() {
+    const token = localStorage.getItem('access_token');
+    if (!token) return;
+    const res = await fetchConToken('/api/me/');
+    if (res && res.ok) {
+        const data = await res.json();
+        const nombre = document.getElementById('nombre-usuario');
+        if (nombre) nombre.textContent = data.username;
+    }
+}
+
+document.getElementById('usuario-menu') && document.getElementById('usuario-menu').addEventListener('click', function() {
+    document.getElementById('dropdown-menu').classList.toggle('visible');
+});
+
+cargarUsuario();
