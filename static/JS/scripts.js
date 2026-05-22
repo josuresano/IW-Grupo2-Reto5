@@ -196,6 +196,7 @@ async function cargarUsuario() {
 
 document.getElementById('usuario-menu') && document.getElementById('usuario-menu').addEventListener('click', function() {
     document.getElementById('dropdown-menu').classList.toggle('visible');
+    this.classList.toggle('activo');
 });
 
 cargarUsuario();

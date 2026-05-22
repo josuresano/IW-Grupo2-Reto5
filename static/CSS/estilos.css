@@ -18,7 +18,9 @@ nav {
     padding: 15px;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 25px;
+    position: relative;
 }
 
 nav a {
@@ -270,6 +272,42 @@ textarea {
     margin-right: 50px;
 }
 
+.usuario-menu {
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    min-width: 150px;
+    z-index: 100;
+}
+
+.dropdown-menu.visible {
+    display: block;
+}
+
+.dropdown-menu a {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+.usuario-menu:hover,
+.usuario-menu.activo {
+    color: var(--azul-claro);
+}
+
 @media (max-width: 768px) {
     .proyecto-info-wrapper {
         grid-template-columns: 1fr;
@@ -280,5 +318,14 @@ textarea {
         width: 200px;
         display: center;
         margin: 20px auto 0 auto;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .usuario-menu {
+        width: 100%;
+        text-align: right;
     }
 }
