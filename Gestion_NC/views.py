@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import NoConformidadSerializer, AccionCorrectivaSerializer, ResponsableSerializer
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 from .models import NoConformidad, AccionCorrectiva, Responsable
 from .forms import NoConformidadForm, AccionCorrectivaForm
 import procesador
@@ -22,19 +23,22 @@ def inicio(request):
     return render(request, 'HTML/inicio.html', {'datos': resumen})
 
 def lista_nc(request):
-    ncs = NoConformidad.objects.all()
-    return render(request, 'HTML/lista_nc.html', {'ncs': ncs})
+    query = request.GET.get('q', '')
+    ncs = NoConformidad.objects.filter(Q(codigo__icontains=query) | Q(estado__icontains=query)) if query else NoConformidad.objects.all()
+    return render(request, 'HTML/lista_nc.html', {'ncs': ncs, 'query': query, 'total': ncs.count()})
 
 def lista_acciones(request):
-    acciones = AccionCorrectiva.objects.all()
-    return render(request, 'HTML/lista_acciones.html', {'acciones': acciones})
+    query = request.GET.get('q', '')
+    acciones = AccionCorrectiva.objects.filter(Q(descripcion__icontains=query) | Q(estado__icontains=query)) if query else AccionCorrectiva.objects.all()
+    return render(request, 'HTML/lista_acciones.html', {'acciones': acciones, 'query': query, 'total': acciones.count()})
 
 def lista_responsables(request):
-    resps = Responsable.objects.all()
-    return render(request, 'HTML/lista_responsables.html', {'resps': resps})
+    query = request.GET.get('q', '')
+    responsables = Responsable.objects.filter(Q(nombre__icontains=query) | Q(email__icontains=query)) if query else Responsable.objects.all()
+    return render(request, 'HTML/lista_responsables.html', {'responsables': responsables, 'query': query, 'total': responsables.count()})
 
 def detalle_nc(request, id_nc):
-    nc = NoConformidad.objects.get(id=id_nc)
+    nc = get_object_or_404(NoConformidad, id=id_nc)
     return render(request, 'HTML/detalle_nc.html', {'nc': nc})
 
 # --- Gestión No Conformidades (CRUD) ---
