@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             filasTabla.forEach(fila => {
 
-                if (fila.cells.length > 1 || !fila.textContent.includes("No se encontraron")) {
+                if (!fila.classList.contains('fila-vacia')) {
                     const textoFila = fila.textContent.toLowerCase();
                     if (textoFila.includes(filtro)) {
                         fila.style.display = '';
