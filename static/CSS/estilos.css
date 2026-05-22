@@ -28,7 +28,7 @@ nav a {
     transition: color 0.3s ease;
 }
 
-nav a:hover, 
+nav a:hover,
 nav a.active {
     color: var(--azul-claro) !important;
 }
@@ -48,7 +48,8 @@ table {
     margin-top: 20px;
 }
 
-th, td {
+th,
+td {
     border: 1px solid var(--borde-suave);
     padding: 12px;
     text-align: left;
@@ -73,14 +74,15 @@ table td strong {
     font-weight: bold;
 }
 
-table td:nth-child(2), 
-table td:nth-child(4), 
+table td:nth-child(2),
+table td:nth-child(4),
 table td:nth-child(5) {
     text-align: center;
     white-space: nowrap;
 }
 
-table td:first-child, table td:nth-child(2) {
+table td:first-child,
+table td:nth-child(2) {
     white-space: normal;
 }
 
@@ -165,9 +167,13 @@ form th {
     background: transparent;
 }
 
-form td { border: none; }
+form td {
+    border: none;
+}
 
-input, select, textarea {
+input,
+select,
+textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--borde-suave);
@@ -245,8 +251,34 @@ input, select, textarea {
     display: none;
 }
 
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group input {
+    width: 300px;
+    padding: 8px;
+}
+
+.login-logo {
+    width: 500px;
+    float: right;
+    margin-top: 30px;
+    margin-right: 50px;
+}
+
 @media (max-width: 768px) {
     .proyecto-info-wrapper {
         grid-template-columns: 1fr;
+    }
+
+    .login-logo {
+        float: none;
+        width: 200px;
+        display: center;
+        margin: 20px auto 0 auto;
     }
 }
