@@ -26,6 +26,26 @@
     .estado-abierta { color: #d9534f !important; font-weight: bold !important; }
     .estado-en-curso { color: #f0ad4e !important; font-weight: bold !important; }
     .estado-resuelta { color: #5cb85c !important; font-weight: bold !important; }
+
+    .paginacion-container {
+        margin-top: 25px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-page {
+        padding: 6px 12px;
+        background-color: #007bff;
+        color: white !important;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .btn-page:hover {
+        background-color: #0056b3;
+    }
 </style>
 </head>
 <body>
@@ -50,7 +70,7 @@
             <a href="{% url 'alta_nc' %}" class="btn-borrar-confirm" style="background-color: var(--azul-claro); text-decoration: none; padding: 8px 15px;">+ Nueva NC</a>
             
             <form method="GET" action="{% url 'lista_nc' %}" style="width: 300px; margin: 0;">
-                <input type="text" id="buscar" name="q" value="{{ query }}" placeholder="Buscar código (ej: 001 o 'a')..." 
+                <input type="text" id="buscar" name="q" value="{{ query }}" placeholder="Buscar código" 
                        style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
             </form>
         </div>
@@ -66,7 +86,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for n in ncs %}
+                {% for n in ncs.object_list %}
                 <tr>
                     <td>{{ n.codigo }}</td>
                     <td>{{ n.estado }}</td>
@@ -83,6 +103,23 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <div class="paginacion-container">
+            {% if ncs.has_previous %}
+                <a href="?page=1" class="btn-page">&laquo; Primera</a>
+                <a href="?page={{ ncs.previous_page_number }}" class="btn-page">Anterior</a>
+            {% endif %}
+
+            <span style="font-size: 14px; font-weight: bold; margin: 0 10px;">
+                Página {{ ncs.number }} de {{ ncs.paginator.num_pages }}
+            </span>
+
+            {% if ncs.has_next %}
+                <a href="?page={{ ncs.next_page_number }}" class="btn-page">Siguiente</a>
+                <a href="?page={{ ncs.paginator.num_pages }}" class="btn-page">Última &raquo;</a>
+            {% endif %}
+        </div>
+
     </div>
 
     <script src="{% static 'JS/scripts.js' %}"></script>

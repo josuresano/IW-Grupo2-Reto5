@@ -40,6 +40,26 @@
             background-color: #eeeeee !important;
             color: #1a2a6c !important;
         }
+
+        .paginacion-container {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-page {
+            padding: 6px 12px;
+            background-color: #007bff;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .btn-page:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -64,7 +84,7 @@
         <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
             <form method="GET" action="{% url 'lista_responsables' %}" style="width: 300px; margin: 0;">
                 <input type="text" id="buscar" name="q" value="{{ query }}"
-                    placeholder="Buscar responsable (ej: 'a' o email)..."
+                    placeholder="Buscar responsable"
                     style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
             </form>
         </div>
@@ -77,7 +97,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for r in resps %}
+                {% for r in resps.object_list %}
                 <tr>
                     <td>{{ r.nombre }} {{ r.apellidos }}</td>
                     <td>{{ r.email }}</td>
@@ -91,6 +111,22 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <div class="paginacion-container">
+            {% if resps.has_previous %}
+                <a href="?page=1" class="btn-page">&laquo; Primera</a>
+                <a href="?page={{ resps.previous_page_number }}" class="btn-page">Anterior</a>
+            {% endif %}
+
+            <span style="font-size: 14px; font-weight: bold; margin: 0 10px;">
+                Página {{ resps.number }} de {{ resps.paginator.num_pages }}
+            </span>
+
+            {% if resps.has_next %}
+                <a href="?page={{ resps.next_page_number }}" class="btn-page">Siguiente</a>
+                <a href="?page={{ resps.paginator.num_pages }}" class="btn-page">Última &raquo;</a>
+            {% endif %}
+        </div>
     </div>
 
     <script src="{% static 'JS/scripts.js' %}"></script>

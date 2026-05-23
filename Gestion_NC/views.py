@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import NoConformidadSerializer, AccionCorrectivaSerializer, ResponsableSerializer
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from .models import NoConformidad, AccionCorrectiva, Responsable
 from .forms import NoConformidadForm, AccionCorrectivaForm
 import procesador
@@ -21,23 +22,42 @@ def inicio(request):
     resumen = procesador.calcular_datos_globales(ncs, acs, resps)
     return render(request, 'HTML/inicio.html', {'datos': resumen})
 
+
+
 def lista_nc(request):
-    ncs = NoConformidad.objects.all()
+    ncs_list = NoConformidad.objects.all()
+    
+    paginator = Paginator(ncs_list, 10)
+    page_number = request.GET.get('page')
+    ncs = paginator.get_page(page_number)
+    
     return render(request, 'HTML/lista_nc.html', {'ncs': ncs})
 
+
 def lista_acciones(request):
-    acciones = AccionCorrectiva.objects.all()
+    acciones_list = AccionCorrectiva.objects.all()
+    
+    paginator = Paginator(acciones_list, 10)
+    page_number = request.GET.get('page')
+    acciones = paginator.get_page(page_number)
+    
     return render(request, 'HTML/lista_acciones.html', {'acciones': acciones})
 
+
 def lista_responsables(request):
-    resps = Responsable.objects.all()
+    resps_list = Responsable.objects.all()
+    
+    paginator = Paginator(resps_list, 10)
+    page_number = request.GET.get('page')
+    resps = paginator.get_page(page_number) 
     return render(request, 'HTML/lista_responsables.html', {'resps': resps})
+
 
 def detalle_nc(request, id_nc):
     nc = NoConformidad.objects.get(id=id_nc)
     return render(request, 'HTML/detalle_nc.html', {'nc': nc})
 
-# --- Gestión No Conformidades (CRUD) ---
+
 
 def alta_nc(request):
     if request.method == "POST":
@@ -67,7 +87,7 @@ def borrar_nc(request, id_nc):
         return redirect('lista_nc')
     return render(request, 'HTML/confirmar_borrado.html', {'objeto': nc, 'volver': 'lista_nc'})
 
-# --- Gestión Acciones Correctivas (CRUD) ---
+
 
 def alta_accion(request):
     if request.method == "POST":
@@ -96,6 +116,8 @@ def borrar_accion(request, id_ac):
         ac.delete()
         return redirect('lista_acciones')
     return render(request, 'HTML/confirmar_borrado.html', {'objeto': ac, 'volver': 'lista_acciones'})
+
+
 
 class MiPerfilAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -129,4 +151,3 @@ class ResumenPublicoAPIView(APIView):
         return Response({
             'total_responsables': Responsable.objects.count(),
         })
-   
