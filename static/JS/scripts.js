@@ -229,3 +229,21 @@ camposCodigo.forEach(campo => {
 });
 
 cargarUsuario();
+
+const botonDetalle = document.getElementById('btn-detalle-nc');
+const bloqueDetalle = document.getElementById('bloque-detalle-nc');
+
+if (botonDetalle && bloqueDetalle) {
+    botonDetalle.addEventListener('click', () => {
+        if (bloqueDetalle.style.display === "none") {
+            bloqueDetalle.style.display = "block";
+            bloqueDetalle.style.backgroundColor = "#bbd5ec";
+            bloqueDetalle.style.padding = "10px";
+            bloqueDetalle.style.borderRadius = "5px";
+            botonDetalle.textContent = "Ocultar información";
+        } else {
+            bloqueDetalle.style.display = "none";
+            botonDetalle.textContent = "Mostrar información adicional";
+        }
+    });
+}
