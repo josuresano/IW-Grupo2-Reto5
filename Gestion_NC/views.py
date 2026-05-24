@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import NoConformidadSerializer, AccionCorrectivaSerializer, ResponsableSerializer
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .models import NoConformidad, AccionCorrectiva, Responsable
 from .forms import NoConformidadForm, AccionCorrectivaForm
 import procesador
@@ -24,42 +25,57 @@ def inicio(request):
 
 
 def lista_nc(request):
+
     logger.info(f"El usuario '{request.user}' ha consultado el listado de NC")
     
-    ncs_list = NoConformidad.objects.all()
-    
+    query = request.GET.get('q', '')
+    if query:
+        ncs_list = NoConformidad.objects.filter(Q(codigo__icontains=query) | Q(estado__icontains=query))
+    else:
+        ncs_list = NoConformidad.objects.all()
+
     paginator = Paginator(ncs_list, 10)
     page_number = request.GET.get('page')
     ncs = paginator.get_page(page_number)
     
-    return render(request, 'HTML/lista_nc.html', {'ncs': ncs})
+    return render(request, 'HTML/lista_nc.html', {'ncs': ncs, 'query': query, 'total': ncs_list.count()})
 
 
 def lista_acciones(request):
     logger.info(f"El usuario '{request.user}' ha consultado el listado de acciones correctivas")
     
-    acciones_list = AccionCorrectiva.objects.all()
+    query = request.GET.get('q', '')
+    if query:
+        acciones_list = AccionCorrectiva.objects.filter(Q(descripcion__icontains=query) | Q(estado__icontains=query))
+    else:
+        acciones_list = AccionCorrectiva.objects.all()
     
     paginator = Paginator(acciones_list, 10)
     page_number = request.GET.get('page')
     acciones = paginator.get_page(page_number)
     
-    return render(request, 'HTML/lista_acciones.html', {'acciones': acciones})
+    return render(request, 'HTML/lista_acciones.html', {'acciones': acciones, 'query': query, 'total': acciones_list.count()})
 
 
 def lista_responsables(request):
     logger.info(f"El usuario '{request.user}' ha consultado el listado de responsables")
     
-    resps_list = Responsable.objects.all()
+
+    query = request.GET.get('q', '')
+    if query:
+        resps_list = Responsable.objects.filter(Q(nombre__icontains=query) | Q(email__icontains=query))
+    else:
+        resps_list = Responsable.objects.all()
     
     paginator = Paginator(resps_list, 10)
     page_number = request.GET.get('page')
     resps = paginator.get_page(page_number) 
-    return render(request, 'HTML/lista_responsables.html', {'resps': resps})
+    
+    return render(request, 'HTML/lista_responsables.html', {'resps': resps, 'query': query, 'total': resps_list.count()})
 
 
 def detalle_nc(request, id_nc):
-    nc = NoConformidad.objects.get(id=id_nc)
+    nc = get_object_or_404(NoConformidad, id=id_nc)
     return render(request, 'HTML/detalle_nc.html', {'nc': nc})
 
 

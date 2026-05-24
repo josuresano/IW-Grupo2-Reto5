@@ -315,17 +315,54 @@ textarea {
 
     .login-logo {
         float: none;
-        width: 200px;
-        display: center;
+        width: 150px;
+        display: block;
         margin: 20px auto 0 auto;
     }
 
     nav {
         flex-wrap: wrap;
+        gap: 12px;
+        padding: 10px;
+        justify-content: center;
     }
 
     .usuario-menu {
+        position: static;
         width: 100%;
-        text-align: right;
+        text-align: center;
+    }
+
+    .main-wrapper {
+        margin: 15px !important;
+        padding: 15px !important;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .resumen-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    div[style*="display: flex"] {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form[method="GET"] {
+        width: 100% !important;
     }
 }

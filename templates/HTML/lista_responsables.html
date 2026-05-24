@@ -84,7 +84,7 @@
         <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
             <form method="GET" action="{% url 'lista_responsables' %}" style="width: 300px; margin: 0;">
                 <input type="text" id="buscar" name="q" value="{{ query }}"
-                    placeholder="Buscar responsable"
+                    placeholder="Buscar responsable..."
                     style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
             </form>
         </div>
@@ -97,13 +97,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for r in resps.object_list %}
+                {% for r in resps %}
                 <tr>
                     <td>{{ r.nombre }} {{ r.apellidos }}</td>
                     <td>{{ r.email }}</td>
                 </tr>
                 {% empty %}
-                <tr>
+                <tr class="fila-vacia">
                     <td colspan="2" style="text-align: center; padding: 30px; color: #666;">
                         No se encontraron responsables con esos criterios.
                     </td>
@@ -114,8 +114,8 @@
 
         <div class="paginacion-container">
             {% if resps.has_previous %}
-                <a href="?page=1" class="btn-page">&laquo; Primera</a>
-                <a href="?page={{ resps.previous_page_number }}" class="btn-page">Anterior</a>
+                <a href="?page=1{% if query %}&q={{ query }}{% endif %}" class="btn-page">&laquo; Primera</a>
+                <a href="?page={{ resps.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn-page">Anterior</a>
             {% endif %}
 
             <span style="font-size: 14px; font-weight: bold; margin: 0 10px;">
@@ -123,14 +123,14 @@
             </span>
 
             {% if resps.has_next %}
-                <a href="?page={{ resps.next_page_number }}" class="btn-page">Siguiente</a>
-                <a href="?page={{ resps.paginator.num_pages }}" class="btn-page">Última &raquo;</a>
+                <a href="?page={{ resps.next_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn-page">Siguiente</a>
+                <a href="?page={{ resps.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}" class="btn-page">Última &raquo;</a>
             {% endif %}
         </div>
+        
+        <p id="contador-registros" style="margin-top: 15px;"><strong>Registros totales encontrados: {{ total }}</strong></p>
     </div>
 
     <script src="{% static 'JS/scripts.js' %}"></script>
-
 </body>
-
 </html>

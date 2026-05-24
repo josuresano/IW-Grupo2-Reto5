@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,46 +9,47 @@
     <link rel="stylesheet" href="{% static 'CSS/estilos.css' %}">
 
     <style>
-    body { background-color: #f0f2f5 !important; }
-    .main-wrapper {
-        max-width: 1200px !important;
-        margin: 40px auto !important;
-        background-color: white !important;
-        padding: 30px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-        display: block !important;
-    }
-    table { width: 100% !important; border-collapse: collapse !important; margin-top: 20px !important; }
-    th, td { border: 1px solid #e0e0e0 !important; padding: 12px !important; text-align: left !important; }
-    th { background-color: #f8f9fa !important; color: #1a2a6c !important; font-weight: bold !important; }
-    .btn { display: inline-block !important; padding: 8px 14px !important; border-radius: 4px !important; text-decoration: none !important; font-size: 14px !important; }
-    .btn-primary { background-color: #007bff !important; color: white !important; margin-bottom: 15px !important; }
-    .estado-abierta { color: #d9534f !important; font-weight: bold !important; }
-    .estado-en-curso { color: #f0ad4e !important; font-weight: bold !important; }
-    .estado-resuelta { color: #5cb85c !important; font-weight: bold !important; }
+        body { background-color: #f0f2f5 !important; }
+        .main-wrapper {
+            max-width: 1200px !important;
+            margin: 40px auto !important;
+            background-color: white !important;
+            padding: 30px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+            display: block !important;
+        }
+        table { width: 100% !important; border-collapse: collapse !important; margin-top: 20px !important; }
+        th, td { border: 1px solid #e0e0e0 !important; padding: 12px !important; text-align: left !important; }
+        th { background-color: #f8f9fa !important; color: #1a2a6c !important; font-weight: bold !important; }
+        .btn { display: inline-block !important; padding: 8px 14px !important; border-radius: 4px !important; text-decoration: none !important; font-size: 14px !important; }
+        .btn-primary { background-color: #007bff !important; color: white !important; margin-bottom: 15px !important; }
+        .estado-abierta { color: #d9534f !important; font-weight: bold !important; }
+        .estado-en-curso { color: #f0ad4e !important; font-weight: bold !important; }
+        .estado-resuelta { color: #5cb85c !important; font-weight: bold !important; }
 
-    .paginacion-container {
-        margin-top: 25px;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        justify-content: center;
-    }
-    .btn-page {
-        padding: 6px 12px;
-        background-color: #007bff;
-        color: white !important;
-        text-decoration: none;
-        border-radius: 4px;
-        font-size: 14px;
-        font-weight: 500;
-    }
-    .btn-page:hover {
-        background-color: #0056b3;
-    }
-</style>
+        .paginacion-container {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-page {
+            padding: 6px 12px;
+            background-color: #007bff;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .btn-page:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
 
     <nav>
@@ -65,12 +67,13 @@
 
     <div class="main-wrapper">
         <h1 style="margin-bottom: 20px;">Registro de No Conformidades</h1>
-        
+
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <a href="{% url 'alta_nc' %}" class="btn-borrar-confirm" style="background-color: var(--azul-claro); text-decoration: none; padding: 8px 15px;">+ Nueva NC</a>
-            
+            <a href="{% url 'alta_nc' %}" class="btn-borrar-confirm"
+                style="background-color: var(--azul-claro); text-decoration: none; padding: 8px 15px;">+ Nueva NC</a>
+
             <form method="GET" action="{% url 'lista_nc' %}" style="width: 300px; margin: 0;">
-                <input type="text" id="buscar" name="q" value="{{ query }}" placeholder="Buscar código" 
+                <input type="text" id="buscar" name="q" value="{{ query }}" placeholder="Buscar código o estado..." 
                        style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
             </form>
         </div>
@@ -86,7 +89,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for n in ncs.object_list %}
+                {% for n in ncs %}
                 <tr>
                     <td>{{ n.codigo }}</td>
                     <td>{{ n.estado }}</td>
@@ -95,7 +98,7 @@
                     <td><a href="{% url 'borrar_nc' n.id %}" class="btn">Borrar NC</a></td>
                 </tr>
                 {% empty %}
-                <tr>
+                <tr class="fila-vacia">
                     <td colspan="5" style="text-align: center; padding: 30px; color: #666;">
                         No se encontraron resultados para la búsqueda.
                     </td>
@@ -106,8 +109,8 @@
 
         <div class="paginacion-container">
             {% if ncs.has_previous %}
-                <a href="?page=1" class="btn-page">&laquo; Primera</a>
-                <a href="?page={{ ncs.previous_page_number }}" class="btn-page">Anterior</a>
+                <a href="?page=1{% if query %}&q={{ query }}{% endif %}" class="btn-page">&laquo; Primera</a>
+                <a href="?page={{ ncs.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn-page">Anterior</a>
             {% endif %}
 
             <span style="font-size: 14px; font-weight: bold; margin: 0 10px;">
@@ -115,14 +118,14 @@
             </span>
 
             {% if ncs.has_next %}
-                <a href="?page={{ ncs.next_page_number }}" class="btn-page">Siguiente</a>
-                <a href="?page={{ ncs.paginator.num_pages }}" class="btn-page">Última &raquo;</a>
+                <a href="?page={{ ncs.next_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn-page">Siguiente</a>
+                <a href="?page={{ ncs.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}" class="btn-page">Última &raquo;</a>
             {% endif %}
         </div>
 
+        <p id="contador-registros" style="margin-top: 15px;"><strong>Registros totales encontrados: {{ total }}</strong></p>
     </div>
 
     <script src="{% static 'JS/scripts.js' %}"></script>
-    
 </body>
 </html>

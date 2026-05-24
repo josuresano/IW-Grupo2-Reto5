@@ -30,7 +30,6 @@ urlpatterns = [
     path('api/acciones/', views.AccionCorrectivaListAPIView.as_view(), name='api_acciones_list'),
     path('api/resumen/', views.ResumenPublicoAPIView.as_view(), name='api_resumen'),
     path('', views.login_view, name='login'),
-    path('login/', views.login_view, name='login_alt'),
     path('inicio/', views.inicio, name='inicio'),
     path('nc/', views.lista_nc, name='lista_nc'),
     path('acciones/', views.lista_acciones, name='lista_acciones'),

@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             filasTabla.forEach(fila => {
 
-                if (fila.cells.length > 1 || !fila.textContent.includes("No se encontraron")) {
+                if (!fila.classList.contains('fila-vacia')) {
                     const textoFila = fila.textContent.toLowerCase();
                     if (textoFila.includes(filtro)) {
                         fila.style.display = '';
@@ -89,6 +89,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+if (window.location.pathname !== '/') {
+    if (!localStorage.getItem('access_token')) {
+        window.location.href = '/';
+    }
+}
+
 if (window.location.pathname === '/') {
     if (localStorage.getItem('access_token')) {
         window.location.href = '/inicio/';
@@ -145,7 +151,7 @@ async function handleLogin() {
 function cerrarSesion() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    window.location.href = '/login/';
+    window.location.href = '/';
 }
 
 async function fetchConToken(url, opciones = {}) {
@@ -194,7 +200,7 @@ async function cargarUsuario() {
     }
 }
 
-document.getElementById('usuario-menu') && document.getElementById('usuario-menu').addEventListener('click', function() {
+document.getElementById('usuario-menu') && document.getElementById('usuario-menu').addEventListener('click', function () {
     document.getElementById('dropdown-menu').classList.toggle('visible');
     this.classList.toggle('activo');
 });
