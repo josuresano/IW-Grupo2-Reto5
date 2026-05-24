@@ -211,4 +211,21 @@ document.getElementById('usuario-menu') && document.getElementById('usuario-menu
     this.classList.toggle('activo');
 });
 
+const camposCodigo = document.querySelectorAll('input[name="codigo"]');
+
+camposCodigo.forEach(campo => {
+
+    campo.addEventListener('input', () => {
+
+        campo.value = campo.value.toUpperCase().trim();
+        campo.style.border = "2px solid #3498db";
+
+        if (campo.value === "") {
+            campo.style.border = "1px solid #ccc";
+        }
+
+    });
+
+});
+
 cargarUsuario();
