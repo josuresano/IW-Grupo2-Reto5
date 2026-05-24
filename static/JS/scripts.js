@@ -17,11 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const buscador = document.getElementById('buscar');
     const filasTabla = document.querySelectorAll('table tbody tr');
+    const contadorElem = document.getElementById('contador-registros');
 
     if (buscador) {
 
         buscador.addEventListener('input', function () {
-            const filtro = buscador.value.toLowerCase();
+            const filtro = buscador.value.toLowerCase().trim();
             let visibles = 0;
 
             filasTabla.forEach(fila => {
@@ -30,16 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     const textoFila = fila.textContent.toLowerCase();
                     if (textoFila.includes(filtro)) {
                         fila.style.display = '';
+                        fila.style.backgroundColor = "#ffffff";
                         visibles++;
                     } else {
                         fila.style.display = 'none';
+                        fila.style.backgroundColor = "#ffe5e5";
                     }
                 }
             });
 
-            const contadorElem = document.getElementById('contador-registros');
             if (contadorElem) {
-                contadorElem.textContent = "Registros visibles: " + visibles;
+                 if (visibles === 0) {
+                    contadorElem.textContent = "No se han encontrado registros visibles";
+                } else {
+                    contadorElem.textContent = "Registros visibles: " + visibles;
+                }
             }
         });
     }
