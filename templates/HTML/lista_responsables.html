@@ -63,7 +63,7 @@
     </style>
 </head>
 
-<body>
+<body class="page-bg">
 
     <nav>
         <a href="{% url 'inicio' %}">Inicio</a>
@@ -78,14 +78,12 @@
         </div>
     </nav>
 
-    <div class="main-wrapper">
-        <h1 style="margin-bottom: 20px;">Equipo de Responsables</h1>
+    <div class="main-wrapper wrapper-md">
+        <h1 class="mb-20">Equipo de Responsables</h1>
 
-        <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 20px;">
-            <form method="GET" action="{% url 'lista_responsables' %}" style="width: 300px; margin: 0;">
-                <input type="text" id="buscar" name="q" value="{{ query }}"
-                    placeholder="Buscar responsable..."
-                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        <div class="flex-end">
+            <form method="GET" action="{% url 'lista_responsables' %}" class="search-form">
+                <input type="text" id="buscar" name="q" value="{{ query }}" placeholder="Buscar responsable..." class="search-input">
             </form>
         </div>
 

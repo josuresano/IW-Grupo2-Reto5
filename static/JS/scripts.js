@@ -122,31 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (texto.includes("alta")) {
 
-            gravedad.style.color = "red";
-            gravedad.style.fontWeight = "bold";
-            gravedad.style.backgroundColor = "#f8aaaa";
-            gravedad.style.padding = "4px 8px";
-            gravedad.style.borderRadius = "5px";
+            gravedad.classList.add("gravedad-alta");
 
         }
 
         else if (texto.includes("media")) {
 
-            gravedad.style.color = "orange";
-            gravedad.style.fontWeight = "bold";
-            gravedad.style.backgroundColor = "#fee3bd";
-            gravedad.style.padding = "4px 8px";
-            gravedad.style.borderRadius = "5px";
+            gravedad.classList.add("gravedad-media");
 
         }
 
         else if (texto.includes("baja")) {
 
-            gravedad.style.color = "green";
-            gravedad.style.fontWeight = "bold";
-            gravedad.style.backgroundColor = "#c4ffc4";
-            gravedad.style.padding = "4px 8px";
-            gravedad.style.borderRadius = "5px";
+            gravedad.classList.add("gravedad-baja");
 
         }
 
@@ -295,9 +283,7 @@ if (botonDetalle && bloqueDetalle) {
     botonDetalle.addEventListener('click', () => {
         if (bloqueDetalle.style.display === "none") {
             bloqueDetalle.style.display = "block";
-            bloqueDetalle.style.backgroundColor = "#bbd5ec";
-            bloqueDetalle.style.padding = "10px";
-            bloqueDetalle.style.borderRadius = "5px";
+            bloqueDetalle.classList.add("bloque-detalle-visible");
             botonDetalle.textContent = "Ocultar información";
         } else {
             bloqueDetalle.style.display = "none";
