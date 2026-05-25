@@ -10,7 +10,7 @@
 <body>
     <div class="main-wrapper">
         <h1>Ficha: {{ nc.codigo }}</h1>
-        
+
         <button id="btn-detalle-nc" class="btn-ficha" type="button">Mostrar información adicional</button>
 
         <div id="bloque-detalle-nc" style="display: none; margin-top: 15px;">
@@ -24,6 +24,8 @@
             <li>{{ r.nombre }} {{ r.apellidos }}</li>
             {% endfor %}
         </ul>
+        <h3>Recomendaciones de gestión</h3>
+        <div id="contenedor-recomendaciones"></div>
         <br>
         <a href="{% url 'lista_nc' %}" class="btn-ficha">Volver al listado</a>
     </div>

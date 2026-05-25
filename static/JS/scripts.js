@@ -73,6 +73,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const contenedorRecomendaciones = document.getElementById('contenedor-recomendaciones');
+
+    if (contenedorRecomendaciones) {
+        const recomendaciones = [
+            "Revisar la causa raíz antes de cerrar la no conformidad",
+            "Asignar un responsable claro para el seguimiento",
+            "Comprobar que la acción correctiva queda documentada"
+        ];
+
+        let lista = "<ul class='lista-doc'>";
+
+        recomendaciones.forEach((texto) => {
+            lista += "<li style='margin-bottom:8px; color:#1a2a6c;'>" + texto + "</li>";
+        });
+
+        lista += "</ul>";
+
+        contenedorRecomendaciones.innerHTML = lista;
+    }
+
     const contenedorTips = document.getElementById('contenedor-tips');
     if (contenedorTips) {
         const tips = ["Revisar fechas", "Códigos en mayúsculas", "Asignar responsable"];
