@@ -113,6 +113,44 @@ document.addEventListener("DOMContentLoaded", () => {
         mensaje.style.fontStyle = "italic";
         titulo.after(mensaje);
     }
+
+    const gravedad = document.querySelector('.gravedad-nc');
+
+    if (gravedad) {
+
+        const texto = gravedad.textContent.trim().toLowerCase();
+
+        if (texto.includes("alta")) {
+
+            gravedad.style.color = "red";
+            gravedad.style.fontWeight = "bold";
+            gravedad.style.backgroundColor = "#f8aaaa";
+            gravedad.style.padding = "4px 8px";
+            gravedad.style.borderRadius = "5px";
+
+        }
+
+        else if (texto.includes("media")) {
+
+            gravedad.style.color = "orange";
+            gravedad.style.fontWeight = "bold";
+            gravedad.style.backgroundColor = "#fee3bd";
+            gravedad.style.padding = "4px 8px";
+            gravedad.style.borderRadius = "5px";
+
+        }
+
+        else if (texto.includes("baja")) {
+
+            gravedad.style.color = "green";
+            gravedad.style.fontWeight = "bold";
+            gravedad.style.backgroundColor = "#c4ffc4";
+            gravedad.style.padding = "4px 8px";
+            gravedad.style.borderRadius = "5px";
+
+        }
+
+    }
 });
 
 if (window.location.pathname !== '/') {
