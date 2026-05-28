@@ -17,11 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const buscador = document.getElementById('buscar');
     const filasTabla = document.querySelectorAll('table tbody tr');
+    const contadorElem = document.getElementById('contador-registros');
 
     if (buscador) {
 
         buscador.addEventListener('input', function () {
-            const filtro = buscador.value.toLowerCase();
+            const filtro = buscador.value.toLowerCase().trim();
             let visibles = 0;
 
             filasTabla.forEach(fila => {
@@ -30,16 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     const textoFila = fila.textContent.toLowerCase();
                     if (textoFila.includes(filtro)) {
                         fila.style.display = '';
+                        fila.style.backgroundColor = "#ffffff";
                         visibles++;
                     } else {
                         fila.style.display = 'none';
+                        fila.style.backgroundColor = "#ffe5e5";
                     }
                 }
             });
 
-            const contadorElem = document.getElementById('contador-registros');
             if (contadorElem) {
-                contadorElem.textContent = "Registros visibles: " + visibles;
+                 if (visibles === 0) {
+                    contadorElem.textContent = "No se han encontrado registros visibles";
+                } else {
+                    contadorElem.textContent = "Registros visibles: " + visibles;
+                }
             }
         });
     }
@@ -67,6 +73,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const contenedorRecomendaciones = document.getElementById('contenedor-recomendaciones');
+
+    if (contenedorRecomendaciones) {
+        const recomendaciones = [
+            "Revisar la causa raíz antes de cerrar la no conformidad",
+            "Asignar un responsable claro para el seguimiento",
+            "Comprobar que la acción correctiva queda documentada"
+        ];
+
+        let lista = "<ul class='lista-doc'>";
+
+        recomendaciones.forEach((texto) => {
+            lista += "<li style='margin-bottom:8px; color:#1a2a6c;'>" + texto + "</li>";
+        });
+
+        lista += "</ul>";
+
+        contenedorRecomendaciones.innerHTML = lista;
+    }
+
     const contenedorTips = document.getElementById('contenedor-tips');
     if (contenedorTips) {
         const tips = ["Revisar fechas", "Códigos en mayúsculas", "Asignar responsable"];
@@ -86,6 +112,32 @@ document.addEventListener("DOMContentLoaded", () => {
         mensaje.style.color = "#3498db";
         mensaje.style.fontStyle = "italic";
         titulo.after(mensaje);
+    }
+
+    const gravedad = document.querySelector('.gravedad-nc');
+
+    if (gravedad) {
+
+        const texto = gravedad.textContent.trim().toLowerCase();
+
+        if (texto.includes("alta")) {
+
+            gravedad.classList.add("gravedad-alta");
+
+        }
+
+        else if (texto.includes("media")) {
+
+            gravedad.classList.add("gravedad-media");
+
+        }
+
+        else if (texto.includes("baja")) {
+
+            gravedad.classList.add("gravedad-baja");
+
+        }
+
     }
 });
 
@@ -205,4 +257,37 @@ document.getElementById('usuario-menu') && document.getElementById('usuario-menu
     this.classList.toggle('activo');
 });
 
+const camposCodigo = document.querySelectorAll('input[name="codigo"]');
+
+camposCodigo.forEach(campo => {
+
+    campo.addEventListener('input', () => {
+
+        campo.value = campo.value.toUpperCase().trim();
+        campo.style.border = "2px solid #3498db";
+
+        if (campo.value === "") {
+            campo.style.border = "1px solid #ccc";
+        }
+
+    });
+
+});
+
 cargarUsuario();
+
+const botonDetalle = document.getElementById('btn-detalle-nc');
+const bloqueDetalle = document.getElementById('bloque-detalle-nc');
+
+if (botonDetalle && bloqueDetalle) {
+    botonDetalle.addEventListener('click', () => {
+        if (bloqueDetalle.style.display === "none") {
+            bloqueDetalle.style.display = "block";
+            bloqueDetalle.classList.add("bloque-detalle-visible");
+            botonDetalle.textContent = "Ocultar información";
+        } else {
+            bloqueDetalle.style.display = "none";
+            botonDetalle.textContent = "Mostrar información adicional";
+        }
+    });
+}
