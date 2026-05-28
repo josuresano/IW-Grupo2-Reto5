@@ -50,3 +50,80 @@ Perfil consultado por josu
 Perfil consultado por josu
 Perfil consultado por josu
 Perfil consultado por josu
+INFO 2026-05-24 18:46:06,275 autoreload Watching for file changes with StatReloader
+INFO 2026-05-24 18:46:14,178 log "GET / HTTP/1.1" 200 921
+INFO 2026-05-24 18:46:14,214 log "GET /static/CSS/estilos.css HTTP/1.1" 304 0
+INFO 2026-05-24 18:46:14,217 log "GET /static/JS/scripts.js HTTP/1.1" 304 0
+WARNING 2026-05-24 18:46:14,319 log Unauthorized: /api/me/
+WARNING 2026-05-24 18:46:14,321 log "GET /api/me/ HTTP/1.1" 401 172
+INFO 2026-05-24 18:46:14,705 log "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-05-24 18:46:14,862 log "GET /inicio/ HTTP/1.1" 200 5671
+INFO 2026-05-24 18:46:15,063 views Perfil consultado por josu
+INFO 2026-05-24 18:46:15,066 basehttp - Broken pipe from ('127.0.0.1', 59163)
+INFO 2026-05-24 18:46:15,272 views Perfil consultado por josu
+INFO 2026-05-24 18:46:15,274 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-24 18:46:16,562 views El usuario 'AnonymousUser' ha consultado el listado de NC
+INFO 2026-05-24 18:46:17,029 log "GET /nc/ HTTP/1.1" 200 7093
+INFO 2026-05-24 18:46:17,394 views Perfil consultado por josu
+INFO 2026-05-24 18:46:17,396 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-24 18:46:18,940 log "GET /inicio/ HTTP/1.1" 200 5671
+INFO 2026-05-24 18:46:19,322 views Perfil consultado por josu
+INFO 2026-05-24 18:46:19,324 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-24 18:46:22,032 views El usuario 'AnonymousUser' ha consultado el listado de acciones correctivas
+INFO 2026-05-24 18:46:23,118 log "GET /acciones/ HTTP/1.1" 200 13450
+INFO 2026-05-24 18:46:23,548 views Perfil consultado por josu
+INFO 2026-05-24 18:46:23,550 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-24 18:46:31,253 views El usuario 'AnonymousUser' ha consultado el listado de responsables
+INFO 2026-05-24 18:46:31,705 log "GET /responsables/ HTTP/1.1" 200 4746
+INFO 2026-05-24 18:46:32,075 views Perfil consultado por josu
+INFO 2026-05-24 18:46:32,077 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:02:48,210 autoreload Watching for file changes with StatReloader
+INFO 2026-05-28 17:06:12,009 log "GET / HTTP/1.1" 200 921
+INFO 2026-05-28 17:06:12,075 log "GET /static/CSS/estilos.css HTTP/1.1" 304 0
+INFO 2026-05-28 17:06:12,080 log "GET /static/images/logo_deusto.png HTTP/1.1" 304 0
+INFO 2026-05-28 17:06:12,081 log "GET /static/JS/scripts.js HTTP/1.1" 304 0
+WARNING 2026-05-28 17:06:12,189 log Unauthorized: /api/me/
+WARNING 2026-05-28 17:06:12,191 log "GET /api/me/ HTTP/1.1" 401 172
+INFO 2026-05-28 17:06:12,772 log "POST /api/token/refresh/ HTTP/1.1" 200 244
+INFO 2026-05-28 17:06:13,036 log "GET /inicio/ HTTP/1.1" 200 5671
+INFO 2026-05-28 17:06:13,153 log "GET /static/images/acciones.png HTTP/1.1" 304 0
+INFO 2026-05-28 17:06:13,154 log "GET /static/images/nc.png HTTP/1.1" 304 0
+INFO 2026-05-28 17:06:13,156 log "GET /static/images/responsables.png HTTP/1.1" 304 0
+WARNING 2026-05-28 17:06:13,303 log Not Found: /favicon.ico
+INFO 2026-05-28 17:06:13,304 views Perfil consultado por josu
+WARNING 2026-05-28 17:06:13,308 log "GET /favicon.ico HTTP/1.1" 404 5602
+INFO 2026-05-28 17:06:13,309 basehttp - Broken pipe from ('127.0.0.1', 49304)
+INFO 2026-05-28 17:06:13,738 views Perfil consultado por josu
+INFO 2026-05-28 17:06:13,741 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:06:18,305 views El usuario 'AnonymousUser' ha consultado el listado de NC
+INFO 2026-05-28 17:06:18,574 log "GET /nc/ HTTP/1.1" 200 7093
+INFO 2026-05-28 17:06:19,148 views Perfil consultado por josu
+INFO 2026-05-28 17:06:19,151 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:06:31,975 views El usuario 'AnonymousUser' ha consultado el listado de acciones correctivas
+INFO 2026-05-28 17:06:33,814 log "GET /acciones/ HTTP/1.1" 200 13450
+INFO 2026-05-28 17:06:34,511 views Perfil consultado por josu
+INFO 2026-05-28 17:06:34,514 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:06:49,332 views El usuario 'AnonymousUser' ha consultado el listado de responsables
+INFO 2026-05-28 17:06:50,049 log "GET /responsables/ HTTP/1.1" 200 4746
+INFO 2026-05-28 17:06:50,609 views Perfil consultado por josu
+INFO 2026-05-28 17:06:50,611 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:07:35,606 log "GET /inicio/ HTTP/1.1" 200 5671
+INFO 2026-05-28 17:07:36,231 views Perfil consultado por josu
+INFO 2026-05-28 17:07:36,233 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:07:40,046 views El usuario 'AnonymousUser' ha consultado el listado de NC
+INFO 2026-05-28 17:07:40,715 log "GET /nc/ HTTP/1.1" 200 7093
+INFO 2026-05-28 17:07:41,327 views Perfil consultado por josu
+INFO 2026-05-28 17:07:41,329 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:07:43,322 log "GET /nc/alta/ HTTP/1.1" 200 3045
+INFO 2026-05-28 17:07:43,928 views Perfil consultado por josu
+INFO 2026-05-28 17:07:43,930 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:07:58,623 views El usuario 'AnonymousUser' ha consultado el listado de acciones correctivas
+INFO 2026-05-28 17:08:00,389 log "GET /acciones/ HTTP/1.1" 200 13450
+INFO 2026-05-28 17:08:01,033 views Perfil consultado por josu
+INFO 2026-05-28 17:08:01,035 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:09:39,537 autoreload Watching for file changes with StatReloader
+INFO 2026-05-28 17:10:05,858 views El usuario 'AnonymousUser' ha consultado el listado de responsables
+INFO 2026-05-28 17:10:06,539 log "GET /responsables/ HTTP/1.1" 200 4746
+INFO 2026-05-28 17:10:07,187 views Perfil consultado por josu
+INFO 2026-05-28 17:10:07,190 log "GET /api/me/ HTTP/1.1" 200 62
+INFO 2026-05-28 17:15:13,019 autoreload Watching for file changes with StatReloader

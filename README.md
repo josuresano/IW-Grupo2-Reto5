@@ -140,3 +140,23 @@ Lista No Conformidades: Se han integrado nuevas columnas para mostrar la NC Asoc
 
 Lista de Responsables: Reestructuración de la tabla para unificarla con el diseño general de la aplicación, aplicando las mismas cabeceras y márgenes que en el resto de módulos.
 >>>>>>> 828bdb3d5815a66aff7fdbe222ad6acb1b56e4e5
+
+# Ampliaciones Funcionales - Backend (Django)
+
+A. Buscador Simple de Registros
+
+- Permite buscar No Conformidades y Responsables de forma rápida introduciendo un dato clave (como el código o el nombre) en un cuadro de búsqueda.
+- Se ha programado un formulario con método GET en el HTML que se conecta con el backend mediante filtros Q de Django para buscar coincidencias exactas o parciales.
+- Evita tener que buscar datos a ojo y ahorra tiempo cuando hay muchos registros guardados.
+
+B. Paginación en Tablas y Listados
+
+- Divide las tablas infinitas de No Conformidades, Acciones y Responsables en páginas independientes.
+- Se utiliza la clase Paginator de Django en las vistas para limitar los resultados a 10 registros por página. Se ha diseñado una botonera inferior que permite avanzar o retroceder sin perder la búsqueda que esté activa.
+- La página web carga muchísimo más rápido y la visualización de los datos es mucho más ordenada y limpia.
+
+C. Registro de Mensajes mediante Logger
+
+- Guarda un historial con todo lo que pasa en el servidor en un archivo de texto seguro (app.log).
+- Se ha configurado el sistema logging de Django. Registra accesos rutinarios como informativos (logger.info), y eventos críticos como ediciones o borrados de datos como advertencias (logger.warning), apuntando qué usuario ha hecho la acción.
+- Garantiza la seguridad, el control y la trazabilidad de la aplicación ante cualquier fallo o cambio en los datos.
